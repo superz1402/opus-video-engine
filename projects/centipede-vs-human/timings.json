@@ -1,0 +1,1262 @@
+{
+ "voice": "kokoro af_heart (fallback; Sonia blocked \u2014 GH_PAT absent, API 401)",
+ "gap_between_scenes": 0.35,
+ "scenes": [
+  {
+   "scene": 1,
+   "file": "lines/s1.wav",
+   "text": "A centipede is not a tiny human with more legs. It's a different body plan \u2014 and it starts with the legs. Fifteen pairs. Twenty-one. Sometimes over a hundred. Always odd. You have one pair.",
+   "start": 0.0,
+   "dur": 12.203,
+   "end": 12.203,
+   "words": [
+    {
+     "w": "A",
+     "start": 0.0,
+     "end": 0.079
+    },
+    {
+     "w": "centipede",
+     "start": 0.079,
+     "end": 0.787
+    },
+    {
+     "w": "is",
+     "start": 0.787,
+     "end": 0.945
+    },
+    {
+     "w": "not",
+     "start": 0.945,
+     "end": 1.181
+    },
+    {
+     "w": "a",
+     "start": 1.181,
+     "end": 1.26
+    },
+    {
+     "w": "tiny",
+     "start": 1.26,
+     "end": 1.575
+    },
+    {
+     "w": "human",
+     "start": 1.575,
+     "end": 1.968
+    },
+    {
+     "w": "with",
+     "start": 1.968,
+     "end": 2.283
+    },
+    {
+     "w": "more",
+     "start": 2.283,
+     "end": 2.598
+    },
+    {
+     "w": "legs.",
+     "start": 2.598,
+     "end": 2.992
+    },
+    {
+     "w": "It's",
+     "start": 2.992,
+     "end": 3.307
+    },
+    {
+     "w": "a",
+     "start": 3.307,
+     "end": 3.385
+    },
+    {
+     "w": "different",
+     "start": 3.385,
+     "end": 4.094
+    },
+    {
+     "w": "body",
+     "start": 4.094,
+     "end": 4.409
+    },
+    {
+     "w": "plan",
+     "start": 4.409,
+     "end": 4.724
+    },
+    {
+     "w": "\u2014",
+     "start": 4.724,
+     "end": 4.802
+    },
+    {
+     "w": "and",
+     "start": 4.802,
+     "end": 5.039
+    },
+    {
+     "w": "it",
+     "start": 5.039,
+     "end": 5.196
+    },
+    {
+     "w": "starts",
+     "start": 5.196,
+     "end": 5.668
+    },
+    {
+     "w": "with",
+     "start": 5.668,
+     "end": 5.983
+    },
+    {
+     "w": "the",
+     "start": 5.983,
+     "end": 6.219
+    },
+    {
+     "w": "legs.",
+     "start": 6.219,
+     "end": 6.613
+    },
+    {
+     "w": "Fifteen",
+     "start": 6.613,
+     "end": 7.164
+    },
+    {
+     "w": "pairs.",
+     "start": 7.164,
+     "end": 7.637
+    },
+    {
+     "w": "Twenty-one.",
+     "start": 7.637,
+     "end": 8.503
+    },
+    {
+     "w": "Sometimes",
+     "start": 8.503,
+     "end": 9.211
+    },
+    {
+     "w": "over",
+     "start": 9.211,
+     "end": 9.526
+    },
+    {
+     "w": "a",
+     "start": 9.526,
+     "end": 9.605
+    },
+    {
+     "w": "hundred.",
+     "start": 9.605,
+     "end": 10.234
+    },
+    {
+     "w": "Always",
+     "start": 10.234,
+     "end": 10.707
+    },
+    {
+     "w": "odd.",
+     "start": 10.707,
+     "end": 11.022
+    },
+    {
+     "w": "You",
+     "start": 11.022,
+     "end": 11.258
+    },
+    {
+     "w": "have",
+     "start": 11.258,
+     "end": 11.573
+    },
+    {
+     "w": "one",
+     "start": 11.573,
+     "end": 11.809
+    },
+    {
+     "w": "pair.",
+     "start": 11.809,
+     "end": 12.203
+    }
+   ]
+  },
+  {
+   "scene": 2,
+   "file": "lines/s2.wav",
+   "text": "Its trunk is one module repeated: segment, legs, segment, legs \u2014 more added as it grows. Yours is the opposite idea: a few specialised parts, each built for one job.",
+   "start": 12.553,
+   "dur": 11.477,
+   "end": 24.03,
+   "words": [
+    {
+     "w": "Its",
+     "start": 12.553,
+     "end": 12.806
+    },
+    {
+     "w": "trunk",
+     "start": 12.806,
+     "end": 13.228
+    },
+    {
+     "w": "is",
+     "start": 13.228,
+     "end": 13.397
+    },
+    {
+     "w": "one",
+     "start": 13.397,
+     "end": 13.65
+    },
+    {
+     "w": "module",
+     "start": 13.65,
+     "end": 14.156
+    },
+    {
+     "w": "repeated:",
+     "start": 14.156,
+     "end": 14.916
+    },
+    {
+     "w": "segment,",
+     "start": 14.916,
+     "end": 15.591
+    },
+    {
+     "w": "legs,",
+     "start": 15.591,
+     "end": 16.013
+    },
+    {
+     "w": "segment,",
+     "start": 16.013,
+     "end": 16.688
+    },
+    {
+     "w": "legs",
+     "start": 16.688,
+     "end": 17.025
+    },
+    {
+     "w": "\u2014",
+     "start": 17.025,
+     "end": 17.11
+    },
+    {
+     "w": "more",
+     "start": 17.11,
+     "end": 17.447
+    },
+    {
+     "w": "added",
+     "start": 17.447,
+     "end": 17.869
+    },
+    {
+     "w": "as",
+     "start": 17.869,
+     "end": 18.038
+    },
+    {
+     "w": "it",
+     "start": 18.038,
+     "end": 18.207
+    },
+    {
+     "w": "grows.",
+     "start": 18.207,
+     "end": 18.713
+    },
+    {
+     "w": "Yours",
+     "start": 18.713,
+     "end": 19.135
+    },
+    {
+     "w": "is",
+     "start": 19.135,
+     "end": 19.304
+    },
+    {
+     "w": "the",
+     "start": 19.304,
+     "end": 19.557
+    },
+    {
+     "w": "opposite",
+     "start": 19.557,
+     "end": 20.232
+    },
+    {
+     "w": "idea:",
+     "start": 20.232,
+     "end": 20.654
+    },
+    {
+     "w": "a",
+     "start": 20.654,
+     "end": 20.739
+    },
+    {
+     "w": "few",
+     "start": 20.739,
+     "end": 20.992
+    },
+    {
+     "w": "specialised",
+     "start": 20.992,
+     "end": 21.92
+    },
+    {
+     "w": "parts,",
+     "start": 21.92,
+     "end": 22.427
+    },
+    {
+     "w": "each",
+     "start": 22.427,
+     "end": 22.764
+    },
+    {
+     "w": "built",
+     "start": 22.764,
+     "end": 23.186
+    },
+    {
+     "w": "for",
+     "start": 23.186,
+     "end": 23.439
+    },
+    {
+     "w": "one",
+     "start": 23.439,
+     "end": 23.692
+    },
+    {
+     "w": "job.",
+     "start": 23.692,
+     "end": 24.03
+    }
+   ]
+  },
+  {
+   "scene": 3,
+   "file": "lines/s3.wav",
+   "text": "Even its weapons are legs. The venom fangs behind its head are the first pair of legs, remodelled into claws. No human arm ever did that.",
+   "start": 24.38,
+   "dur": 8.725,
+   "end": 33.105,
+   "words": [
+    {
+     "w": "Even",
+     "start": 24.38,
+     "end": 24.692
+    },
+    {
+     "w": "its",
+     "start": 24.692,
+     "end": 24.925
+    },
+    {
+     "w": "weapons",
+     "start": 24.925,
+     "end": 25.471
+    },
+    {
+     "w": "are",
+     "start": 25.471,
+     "end": 25.704
+    },
+    {
+     "w": "legs.",
+     "start": 25.704,
+     "end": 26.094
+    },
+    {
+     "w": "The",
+     "start": 26.094,
+     "end": 26.328
+    },
+    {
+     "w": "venom",
+     "start": 26.328,
+     "end": 26.717
+    },
+    {
+     "w": "fangs",
+     "start": 26.717,
+     "end": 27.107
+    },
+    {
+     "w": "behind",
+     "start": 27.107,
+     "end": 27.574
+    },
+    {
+     "w": "its",
+     "start": 27.574,
+     "end": 27.808
+    },
+    {
+     "w": "head",
+     "start": 27.808,
+     "end": 28.119
+    },
+    {
+     "w": "are",
+     "start": 28.119,
+     "end": 28.353
+    },
+    {
+     "w": "the",
+     "start": 28.353,
+     "end": 28.587
+    },
+    {
+     "w": "first",
+     "start": 28.587,
+     "end": 28.976
+    },
+    {
+     "w": "pair",
+     "start": 28.976,
+     "end": 29.288
+    },
+    {
+     "w": "of",
+     "start": 29.288,
+     "end": 29.444
+    },
+    {
+     "w": "legs,",
+     "start": 29.444,
+     "end": 29.833
+    },
+    {
+     "w": "remodelled",
+     "start": 29.833,
+     "end": 30.612
+    },
+    {
+     "w": "into",
+     "start": 30.612,
+     "end": 30.924
+    },
+    {
+     "w": "claws.",
+     "start": 30.924,
+     "end": 31.391
+    },
+    {
+     "w": "No",
+     "start": 31.391,
+     "end": 31.547
+    },
+    {
+     "w": "human",
+     "start": 31.547,
+     "end": 31.937
+    },
+    {
+     "w": "arm",
+     "start": 31.937,
+     "end": 32.17
+    },
+    {
+     "w": "ever",
+     "start": 32.17,
+     "end": 32.482
+    },
+    {
+     "w": "did",
+     "start": 32.482,
+     "end": 32.716
+    },
+    {
+     "w": "that.",
+     "start": 32.716,
+     "end": 33.105
+    }
+   ]
+  },
+  {
+   "scene": 4,
+   "file": "lines/s4.wav",
+   "text": "No single brain runs the show. A centipede's nerve cord is a chain of small clusters \u2014 one per segment \u2014 so legs keep stepping on local orders. You run everything from one brain, down one cord.",
+   "start": 33.455,
+   "dur": 12.352,
+   "end": 45.807,
+   "words": [
+    {
+     "w": "No",
+     "start": 33.455,
+     "end": 33.613
+    },
+    {
+     "w": "single",
+     "start": 33.613,
+     "end": 34.085
+    },
+    {
+     "w": "brain",
+     "start": 34.085,
+     "end": 34.478
+    },
+    {
+     "w": "runs",
+     "start": 34.478,
+     "end": 34.793
+    },
+    {
+     "w": "the",
+     "start": 34.793,
+     "end": 35.029
+    },
+    {
+     "w": "show.",
+     "start": 35.029,
+     "end": 35.422
+    },
+    {
+     "w": "A",
+     "start": 35.422,
+     "end": 35.501
+    },
+    {
+     "w": "centipede's",
+     "start": 35.501,
+     "end": 36.366
+    },
+    {
+     "w": "nerve",
+     "start": 36.366,
+     "end": 36.76
+    },
+    {
+     "w": "cord",
+     "start": 36.76,
+     "end": 37.074
+    },
+    {
+     "w": "is",
+     "start": 37.074,
+     "end": 37.232
+    },
+    {
+     "w": "a",
+     "start": 37.232,
+     "end": 37.31
+    },
+    {
+     "w": "chain",
+     "start": 37.31,
+     "end": 37.704
+    },
+    {
+     "w": "of",
+     "start": 37.704,
+     "end": 37.861
+    },
+    {
+     "w": "small",
+     "start": 37.861,
+     "end": 38.255
+    },
+    {
+     "w": "clusters",
+     "start": 38.255,
+     "end": 38.884
+    },
+    {
+     "w": "\u2014",
+     "start": 38.884,
+     "end": 38.963
+    },
+    {
+     "w": "one",
+     "start": 38.963,
+     "end": 39.199
+    },
+    {
+     "w": "per",
+     "start": 39.199,
+     "end": 39.435
+    },
+    {
+     "w": "segment",
+     "start": 39.435,
+     "end": 39.985
+    },
+    {
+     "w": "\u2014",
+     "start": 39.985,
+     "end": 40.064
+    },
+    {
+     "w": "so",
+     "start": 40.064,
+     "end": 40.221
+    },
+    {
+     "w": "legs",
+     "start": 40.221,
+     "end": 40.536
+    },
+    {
+     "w": "keep",
+     "start": 40.536,
+     "end": 40.851
+    },
+    {
+     "w": "stepping",
+     "start": 40.851,
+     "end": 41.48
+    },
+    {
+     "w": "on",
+     "start": 41.48,
+     "end": 41.638
+    },
+    {
+     "w": "local",
+     "start": 41.638,
+     "end": 42.031
+    },
+    {
+     "w": "orders.",
+     "start": 42.031,
+     "end": 42.582
+    },
+    {
+     "w": "You",
+     "start": 42.582,
+     "end": 42.818
+    },
+    {
+     "w": "run",
+     "start": 42.818,
+     "end": 43.054
+    },
+    {
+     "w": "everything",
+     "start": 43.054,
+     "end": 43.84
+    },
+    {
+     "w": "from",
+     "start": 43.84,
+     "end": 44.155
+    },
+    {
+     "w": "one",
+     "start": 44.155,
+     "end": 44.391
+    },
+    {
+     "w": "brain,",
+     "start": 44.391,
+     "end": 44.863
+    },
+    {
+     "w": "down",
+     "start": 44.863,
+     "end": 45.178
+    },
+    {
+     "w": "one",
+     "start": 45.178,
+     "end": 45.414
+    },
+    {
+     "w": "cord.",
+     "start": 45.414,
+     "end": 45.807
+    }
+   ]
+  },
+  {
+   "scene": 5,
+   "file": "lines/s5.wav",
+   "text": "It has no lungs. Air enters through pores along its sides, into branching tubes that deliver oxygen straight to the tissues \u2014 its blood carries none. Your lungs and blood do both jobs together.",
+   "start": 46.157,
+   "dur": 12.16,
+   "end": 58.317,
+   "words": [
+    {
+     "w": "It",
+     "start": 46.157,
+     "end": 46.309
+    },
+    {
+     "w": "has",
+     "start": 46.309,
+     "end": 46.537
+    },
+    {
+     "w": "no",
+     "start": 46.537,
+     "end": 46.689
+    },
+    {
+     "w": "lungs.",
+     "start": 46.689,
+     "end": 47.145
+    },
+    {
+     "w": "Air",
+     "start": 47.145,
+     "end": 47.373
+    },
+    {
+     "w": "enters",
+     "start": 47.373,
+     "end": 47.829
+    },
+    {
+     "w": "through",
+     "start": 47.829,
+     "end": 48.361
+    },
+    {
+     "w": "pores",
+     "start": 48.361,
+     "end": 48.741
+    },
+    {
+     "w": "along",
+     "start": 48.741,
+     "end": 49.121
+    },
+    {
+     "w": "its",
+     "start": 49.121,
+     "end": 49.349
+    },
+    {
+     "w": "sides,",
+     "start": 49.349,
+     "end": 49.805
+    },
+    {
+     "w": "into",
+     "start": 49.805,
+     "end": 50.109
+    },
+    {
+     "w": "branching",
+     "start": 50.109,
+     "end": 50.793
+    },
+    {
+     "w": "tubes",
+     "start": 50.793,
+     "end": 51.173
+    },
+    {
+     "w": "that",
+     "start": 51.173,
+     "end": 51.477
+    },
+    {
+     "w": "deliver",
+     "start": 51.477,
+     "end": 52.009
+    },
+    {
+     "w": "oxygen",
+     "start": 52.009,
+     "end": 52.465
+    },
+    {
+     "w": "straight",
+     "start": 52.465,
+     "end": 53.073
+    },
+    {
+     "w": "to",
+     "start": 53.073,
+     "end": 53.225
+    },
+    {
+     "w": "the",
+     "start": 53.225,
+     "end": 53.453
+    },
+    {
+     "w": "tissues",
+     "start": 53.453,
+     "end": 53.985
+    },
+    {
+     "w": "\u2014",
+     "start": 53.985,
+     "end": 54.061
+    },
+    {
+     "w": "its",
+     "start": 54.061,
+     "end": 54.289
+    },
+    {
+     "w": "blood",
+     "start": 54.289,
+     "end": 54.669
+    },
+    {
+     "w": "carries",
+     "start": 54.669,
+     "end": 55.201
+    },
+    {
+     "w": "none.",
+     "start": 55.201,
+     "end": 55.581
+    },
+    {
+     "w": "Your",
+     "start": 55.581,
+     "end": 55.885
+    },
+    {
+     "w": "lungs",
+     "start": 55.885,
+     "end": 56.265
+    },
+    {
+     "w": "and",
+     "start": 56.265,
+     "end": 56.493
+    },
+    {
+     "w": "blood",
+     "start": 56.493,
+     "end": 56.873
+    },
+    {
+     "w": "do",
+     "start": 56.873,
+     "end": 57.025
+    },
+    {
+     "w": "both",
+     "start": 57.025,
+     "end": 57.329
+    },
+    {
+     "w": "jobs",
+     "start": 57.329,
+     "end": 57.633
+    },
+    {
+     "w": "together.",
+     "start": 57.633,
+     "end": 58.317
+    }
+   ]
+  },
+  {
+   "scene": 6,
+   "file": "lines/s6.wav",
+   "text": "Its heart is a tube as long as its body, pulsing in waves. Yours is one fist-sized pump with four chambers.",
+   "start": 58.667,
+   "dur": 6.784,
+   "end": 65.451,
+   "words": [
+    {
+     "w": "Its",
+     "start": 58.667,
+     "end": 58.901
+    },
+    {
+     "w": "heart",
+     "start": 58.901,
+     "end": 59.291
+    },
+    {
+     "w": "is",
+     "start": 59.291,
+     "end": 59.447
+    },
+    {
+     "w": "a",
+     "start": 59.447,
+     "end": 59.525
+    },
+    {
+     "w": "tube",
+     "start": 59.525,
+     "end": 59.837
+    },
+    {
+     "w": "as",
+     "start": 59.837,
+     "end": 59.993
+    },
+    {
+     "w": "long",
+     "start": 59.993,
+     "end": 60.305
+    },
+    {
+     "w": "as",
+     "start": 60.305,
+     "end": 60.461
+    },
+    {
+     "w": "its",
+     "start": 60.461,
+     "end": 60.695
+    },
+    {
+     "w": "body,",
+     "start": 60.695,
+     "end": 61.085
+    },
+    {
+     "w": "pulsing",
+     "start": 61.085,
+     "end": 61.63
+    },
+    {
+     "w": "in",
+     "start": 61.63,
+     "end": 61.786
+    },
+    {
+     "w": "waves.",
+     "start": 61.786,
+     "end": 62.254
+    },
+    {
+     "w": "Yours",
+     "start": 62.254,
+     "end": 62.644
+    },
+    {
+     "w": "is",
+     "start": 62.644,
+     "end": 62.8
+    },
+    {
+     "w": "one",
+     "start": 62.8,
+     "end": 63.034
+    },
+    {
+     "w": "fist-sized",
+     "start": 63.034,
+     "end": 63.814
+    },
+    {
+     "w": "pump",
+     "start": 63.814,
+     "end": 64.126
+    },
+    {
+     "w": "with",
+     "start": 64.126,
+     "end": 64.438
+    },
+    {
+     "w": "four",
+     "start": 64.438,
+     "end": 64.75
+    },
+    {
+     "w": "chambers.",
+     "start": 64.75,
+     "end": 65.451
+    }
+   ]
+  },
+  {
+   "scene": 7,
+   "file": "lines/s7.wav",
+   "text": "Many centipedes are nearly blind \u2014 simple eyespots, or none at all. They read the world through their antennae. You navigate by sight; it navigates by touch.",
+   "start": 65.801,
+   "dur": 9.685,
+   "end": 75.487,
+   "words": [
+    {
+     "w": "Many",
+     "start": 65.801,
+     "end": 66.097
+    },
+    {
+     "w": "centipedes",
+     "start": 66.097,
+     "end": 66.836
+    },
+    {
+     "w": "are",
+     "start": 66.836,
+     "end": 67.058
+    },
+    {
+     "w": "nearly",
+     "start": 67.058,
+     "end": 67.502
+    },
+    {
+     "w": "blind",
+     "start": 67.502,
+     "end": 67.871
+    },
+    {
+     "w": "\u2014",
+     "start": 67.871,
+     "end": 67.945
+    },
+    {
+     "w": "simple",
+     "start": 67.945,
+     "end": 68.389
+    },
+    {
+     "w": "eyespots,",
+     "start": 68.389,
+     "end": 69.054
+    },
+    {
+     "w": "or",
+     "start": 69.054,
+     "end": 69.202
+    },
+    {
+     "w": "none",
+     "start": 69.202,
+     "end": 69.498
+    },
+    {
+     "w": "at",
+     "start": 69.498,
+     "end": 69.646
+    },
+    {
+     "w": "all.",
+     "start": 69.646,
+     "end": 69.942
+    },
+    {
+     "w": "They",
+     "start": 69.942,
+     "end": 70.237
+    },
+    {
+     "w": "read",
+     "start": 70.237,
+     "end": 70.533
+    },
+    {
+     "w": "the",
+     "start": 70.533,
+     "end": 70.755
+    },
+    {
+     "w": "world",
+     "start": 70.755,
+     "end": 71.125
+    },
+    {
+     "w": "through",
+     "start": 71.125,
+     "end": 71.642
+    },
+    {
+     "w": "their",
+     "start": 71.642,
+     "end": 72.012
+    },
+    {
+     "w": "antennae.",
+     "start": 72.012,
+     "end": 72.677
+    },
+    {
+     "w": "You",
+     "start": 72.677,
+     "end": 72.899
+    },
+    {
+     "w": "navigate",
+     "start": 72.899,
+     "end": 73.49
+    },
+    {
+     "w": "by",
+     "start": 73.49,
+     "end": 73.638
+    },
+    {
+     "w": "sight;",
+     "start": 73.638,
+     "end": 74.082
+    },
+    {
+     "w": "it",
+     "start": 74.082,
+     "end": 74.23
+    },
+    {
+     "w": "navigates",
+     "start": 74.23,
+     "end": 74.895
+    },
+    {
+     "w": "by",
+     "start": 74.895,
+     "end": 75.043
+    },
+    {
+     "w": "touch.",
+     "start": 75.043,
+     "end": 75.487
+    }
+   ]
+  },
+  {
+   "scene": 8,
+   "file": "lines/s8.wav",
+   "text": "Two engineering philosophies. Ours: centralise and specialise. Theirs: repeat one simple module, and let every copy do everything. Neither is a draft of the other.",
+   "start": 75.837,
+   "dur": 11.157,
+   "end": 86.994,
+   "words": [
+    {
+     "w": "Two",
+     "start": 75.837,
+     "end": 76.077
+    },
+    {
+     "w": "engineering",
+     "start": 76.077,
+     "end": 76.96
+    },
+    {
+     "w": "philosophies.",
+     "start": 76.96,
+     "end": 78.004
+    },
+    {
+     "w": "Ours:",
+     "start": 78.004,
+     "end": 78.405
+    },
+    {
+     "w": "centralise",
+     "start": 78.405,
+     "end": 79.208
+    },
+    {
+     "w": "and",
+     "start": 79.208,
+     "end": 79.449
+    },
+    {
+     "w": "specialise.",
+     "start": 79.449,
+     "end": 80.332
+    },
+    {
+     "w": "Theirs:",
+     "start": 80.332,
+     "end": 80.894
+    },
+    {
+     "w": "repeat",
+     "start": 80.894,
+     "end": 81.375
+    },
+    {
+     "w": "one",
+     "start": 81.375,
+     "end": 81.616
+    },
+    {
+     "w": "simple",
+     "start": 81.616,
+     "end": 82.098
+    },
+    {
+     "w": "module,",
+     "start": 82.098,
+     "end": 82.659
+    },
+    {
+     "w": "and",
+     "start": 82.659,
+     "end": 82.9
+    },
+    {
+     "w": "let",
+     "start": 82.9,
+     "end": 83.141
+    },
+    {
+     "w": "every",
+     "start": 83.141,
+     "end": 83.542
+    },
+    {
+     "w": "copy",
+     "start": 83.542,
+     "end": 83.864
+    },
+    {
+     "w": "do",
+     "start": 83.864,
+     "end": 84.024
+    },
+    {
+     "w": "everything.",
+     "start": 84.024,
+     "end": 84.907
+    },
+    {
+     "w": "Neither",
+     "start": 84.907,
+     "end": 85.469
+    },
+    {
+     "w": "is",
+     "start": 85.469,
+     "end": 85.629
+    },
+    {
+     "w": "a",
+     "start": 85.629,
+     "end": 85.71
+    },
+    {
+     "w": "draft",
+     "start": 85.71,
+     "end": 86.111
+    },
+    {
+     "w": "of",
+     "start": 86.111,
+     "end": 86.272
+    },
+    {
+     "w": "the",
+     "start": 86.272,
+     "end": 86.512
+    },
+    {
+     "w": "other.",
+     "start": 86.512,
+     "end": 86.994
+    }
+   ]
+  }
+ ],
+ "total_s": 86.994
+}
