@@ -1,0 +1,17 @@
+{
+ "b001": {
+  "dur": 40.153,
+  "text": "A centipede is not a tiny human with more legs. It's a different body plan \u2014 and it starts with the legs. Fifteen pairs. Twenty-one. Sometimes over a hundred. Always odd. You have one pair. Its trunk is one module repeated: segment, legs, segment, legs \u2014 more added as it grows. Yours is the opposite idea: a few specialised parts, each built for one job. Even its weapons are legs. The venom fangs behind its head are the first pair of legs, remodelled into claws. No human arm ever did that. No single brain runs the show.",
+  "start": 0.0
+ },
+ "b002": {
+  "dur": 38.5,
+  "text": "A centipede's nerve cord is a chain of small clusters \u2014 one per segment \u2014 so legs keep stepping on local orders. You run everything from one brain, down one cord. It has no lungs. Air enters through pores along its sides, into branching tubes that deliver oxygen straight to the tissues \u2014 its blood carries none. Your lungs and blood do both jobs together. Its heart is a tube as long as its body, pulsing in waves. Yours is one fist-sized pump with four chambers. Many centipedes are nearly blind \u2014 simple eyespots, or none at all. They read the world through their antennae.",
+  "start": 40.503
+ },
+ "b003": {
+  "dur": 16.331,
+  "text": "You navigate by sight; it navigates by touch. Two engineering philosophies. Ours: centralise and specialise. Theirs: repeat one simple module, and let every copy do everything. Neither is a draft of the other.",
+  "start": 79.353
+ }
+}
