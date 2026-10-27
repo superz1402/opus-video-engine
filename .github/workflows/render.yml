@@ -115,6 +115,23 @@ jobs:
               --words "$DIR/voice-input.words.json" \
               --timing "$DIR/voice-input.timing.json" \
               --out "build/$PROJECT/index.html"
+            # Guard: baked scene count must equal project.json "scenes"
+            # (catches voice-input files whose blocks merged/split —
+            # blocks are blank-line paragraphs, one per scene).
+            python3 - "$PROJECT" <<'PY'
+          import json, os, re, sys
+          proj = sys.argv[1]
+          pj = json.load(open(f"projects/{proj}/project.json"))
+          expected = pj.get("scenes")
+          if expected:
+              html = open(f"build/{proj}/index.html", encoding="utf-8").read()
+              m = re.search(r"const TIMINGS = (\{.*?\});", html, re.S)
+              got = len(json.loads(m.group(1))["scenes"]) if m else -1
+              print(f"bake guard: baked scenes={got}, project expects {expected}")
+              if got != expected:
+                  print(f"::error::Baked scene count {got} != project scenes {expected} — voice blocks do not match scenes (voice-input.txt blocks must be blank-line-separated, one per scene)")
+                  sys.exit(1)
+          PY
             echo "html=build/$PROJECT/index.html" >> "$GITHUB_OUTPUT"
           else
             echo "html=$DIR/index.html" >> "$GITHUB_OUTPUT"
@@ -129,7 +146,7 @@ jobs:
           HTML: ${{ steps.bake.outputs.html }}
         run: |
           python3 - >> "$GITHUB_OUTPUT" <<'PY'
-          import json, os
+          import json, os, sys
           proj, html_path = os.environ["PROJECT"], os.environ["HTML"]
           html = open(html_path, encoding="utf-8").read()
           dur = ""
@@ -138,7 +155,8 @@ jobs:
               speech = sum(v["dur"] for v in t.values())
               gaps = 0.35 * max(len(t) - 1, 0)
               dur = f"{speech + gaps + 1.2:.2f}"
-              print(f"HTML has no __duration; fallback duration {dur}s")
+              print(f"HTML has no __duration; fallback duration {dur}s",
+                    file=sys.stderr)
           print(f"dur={dur}")
           PY
 
