@@ -1,0 +1,52 @@
+SCRIPT GATE - projects/centipede-vs-human/voice-input.txt
+blocks (scenes): 8 | sentences: 27 | words: 229
+========================================================================
+[PASS] T1p  Hook: self-resolving heuristic (standard 1.1)
+       - no answer markers in the opening lines (heuristic only; the scored hook panel is the scorer's job)
+[FAIL] T3   Question ladder: >= 1 spoken question per block
+       - block 1: 0 spoken questions
+       - block 2: 0 spoken questions
+       - block 3: 0 spoken questions
+       - block 4: 0 spoken questions
+       - block 5: 0 spoken questions
+       - block 6: 0 spoken questions
+       - block 7: 0 spoken questions
+       - block 8: 0 spoken questions
+[FAIL] T5   Template repetition: openers + comparison chaining
+       - block 2: adjacent comparison-template openers ('its...' / 'yours...')
+       - block 6: adjacent comparison-template openers ('its...' / 'yours...')
+       - 2 adjacent possessive-opener pairs - the A/B comparison is being used as structure, not a device (2.4)
+[FAIL] T6   Jagged edge: sentence rhythm (standard 3)
+       - sentences: 27 | median 8 words | sigma 5.19 | min 1 | max 21
+       - block 1 sentences 5-7: lengths [4, 2, 4] within +/-2 words - flat stretch
+       - block 2: 0 fragment(s) <= 4 words (need >= 2 per scene)
+       - block 3: 0 fragment(s) <= 4 words (need >= 2 per scene)
+       - block 4: 0 fragment(s) <= 4 words (need >= 2 per scene)
+       - block 4 sentence 2: two em-dash insertions - split it (3.3)
+       - block 5 sentence 2: 21 words (> 20 cap; a built list needs scorer sign-off)
+       - block 5: 1 fragment(s) <= 4 words (need >= 2 per scene)
+       - block 6: 0 fragment(s) <= 4 words (need >= 2 per scene)
+       - block 7: 0 fragment(s) <= 4 words (need >= 2 per scene)
+[PASS] T9   Contrast pivots: <= 1 per block, <= 2 per episode
+       - block 1: 1 pivot at sentence 1 (earned/hollow test is the scorer's)
+       - 1 pivot(s) total - within ration
+[FAIL] T10  Delivery markup the voice stage must perform (4)
+       - [PAUSE] x0 (short x0) | [ASIDE] x0 | [SLOW] x0 | **emphasis** x0 | rate marks x0
+       - block 1: no [PAUSE] - a flat one-speed read fails 4
+       - block 2: no [PAUSE] - a flat one-speed read fails 4
+       - block 3: no [PAUSE] - a flat one-speed read fails 4
+       - block 4: no [PAUSE] - a flat one-speed read fails 4
+       - block 5: no [PAUSE] - a flat one-speed read fails 4
+       - block 6: no [PAUSE] - a flat one-speed read fails 4
+       - block 7: no [PAUSE] - a flat one-speed read fails 4
+       - block 8: no [PAUSE] - a flat one-speed read fails 4
+       - no [ASIDE] anywhere (character cadence may still require one)
+       - no **emphasis** marks anywhere
+[PASS] T11  Slop lint: section-6 blacklist, zero tolerance
+       - 0 blacklist hits (character-bible exceptions, if any, are logged in the score sheet, not here)
+[FAIL] PACE Pacing-law sanity: 125-145 wpm (standard 4)
+       - 229 words -> 95-110 s of speech at 145-125 wpm (pauses excluded)
+       - implied pace at 88 s target: 156 wpm, outside 125-145 - fix by casting/rate/script, never by time-stretch
+========================================================================
+VERDICT: FAIL (5 hard fail(s), 8 checks)
+Note: T1 panel, T2, T4, T7, T8, T12 are scorer checks and are NOT certified by this script.
