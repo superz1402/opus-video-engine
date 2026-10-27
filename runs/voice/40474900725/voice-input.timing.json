@@ -1,0 +1,42 @@
+{
+ "b001": {
+  "dur": 15.027,
+  "text": "A centipede is not a tiny human with more legs. It's a different body plan \u2014 and it starts with the legs. Fifteen pairs. Twenty-one. Sometimes over a hundred. Always odd. You have one pair.",
+  "start": 0.0
+ },
+ "b002": {
+  "dur": 12.378,
+  "text": "Its trunk is one module repeated: segment, legs, segment, legs \u2014 more added as it grows. Yours is the opposite idea: a few specialised parts, each built for one job.",
+  "start": 15.377
+ },
+ "b003": {
+  "dur": 9.742,
+  "text": "Even its weapons are legs. The venom fangs behind its head are the first pair of legs, remodelled into claws. No human arm ever did that.",
+  "start": 28.105
+ },
+ "b004": {
+  "dur": 12.812,
+  "text": "No single brain runs the show. A centipede's nerve cord is a chain of small clusters \u2014 one per segment \u2014 so legs keep stepping on local orders. You run everything from one brain, down one cord.",
+  "start": 38.197
+ },
+ "b005": {
+  "dur": 12.353,
+  "text": "It has no lungs. Air enters through pores along its sides, into branching tubes that deliver oxygen straight to the tissues \u2014 its blood carries none. Your lungs and blood do both jobs together.",
+  "start": 51.359
+ },
+ "b006": {
+  "dur": 7.752,
+  "text": "Its heart is a tube as long as its body, pulsing in waves. Yours is one fist-sized pump with four chambers.",
+  "start": 64.062
+ },
+ "b007": {
+  "dur": 11.034,
+  "text": "Many centipedes are nearly blind \u2014 simple eyespots, or none at all. They read the world through their antennae. You navigate by sight; it navigates by touch.",
+  "start": 72.164
+ },
+ "b008": {
+  "dur": 12.498,
+  "text": "Two engineering philosophies. Ours: centralise and specialise. Theirs: repeat one simple module, and let every copy do everything. Neither is a draft of the other.",
+  "start": 83.548
+ }
+}

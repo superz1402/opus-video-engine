@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "40474900725",
+ "run_number": "2",
+ "job_status": "success",
+ "sha": "ffb79ba2e23dbed34e00e95ed90980af222557fa",
+ "script": "projects/centipede-vs-human/voice-input.txt",
+ "project": "centipede-vs-human",
+ "timed_words": 229,
+ "blocks": 8,
+ "speech_seconds_blocks_only": 93.6,
+ "audio_artifact": "voice-centipede-vs-human",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
