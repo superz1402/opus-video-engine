@@ -1,0 +1,254 @@
+name: opus-render
+
+# Opus Video Engine — full video run (P2 voice in-job → P3 capture →
+# P5 assemble → P6 checks → P7 Release + run record). See AGENTS.md.
+#
+# Voice: by default the narration is synthesised in this job with
+# engine/voice_tts.py. Set voice_run_id to reuse a prior opus-voice run's
+# artifact (voice-<project>) instead.
+# Release: master + 720p review encode are attached to the Release named
+# by release_tag (default video-centipede-v1.0.0).
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Project slug under projects/"
+        required: true
+        default: "centipede-vs-human"
+      voice_run_id:
+        description: "Optional: reuse voice artifact from this opus-voice run id"
+        required: false
+        default: ""
+      release_tag:
+        description: "Release tag to create/update"
+        required: true
+        default: "video-centipede-v1.0.0"
+      prerelease:
+        description: "Mark the Release as pre-release (review shelf)"
+        type: boolean
+        required: false
+        default: true
+
+permissions:
+  contents: write # create the Release + commit the run record
+  actions: read   # download a prior run's voice artifact when requested
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ffmpeg, edge-tts, Playwright + Chromium
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install --quiet edge-tts playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Resolve project
+        id: proj
+        shell: bash
+        env:
+          PROJECT: ${{ inputs.project }}
+        run: |
+          DIR="projects/$PROJECT"
+          if [ ! -f "$DIR/index.html" ] || [ ! -f "$DIR/voice-input.txt" ]; then
+            echo "::error::Project incomplete: $DIR needs index.html and voice-input.txt"
+            exit 1
+          fi
+          python3 - "$DIR/project.json" >> "$GITHUB_OUTPUT" <<'PY'
+          import json, os, sys
+          pj = {}
+          if os.path.exists(sys.argv[1]):
+              pj = json.load(open(sys.argv[1]))
+          print(f"width={pj.get('width', 1920)}")
+          print(f"height={pj.get('height', 1080)}")
+          print(f"fps={pj.get('fps', 30)}")
+          PY
+          echo "dir=$DIR" >> "$GITHUB_OUTPUT"
+          echo "Project: $DIR"
+
+      - name: Reuse voice artifact from a prior run
+        if: inputs.voice_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: voice-${{ inputs.project }}
+          run-id: ${{ inputs.voice_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: projects/${{ inputs.project }}/
+
+      - name: Synthesize narration (in-job)
+        if: inputs.voice_run_id == ''
+        run: python engine/voice_tts.py "projects/${{ inputs.project }}/voice-input.txt"
+
+      - name: Verify voice outputs
+        run: |
+          DIR="projects/${{ inputs.project }}"
+          ls -la "$DIR"/voice-input.audio.wav "$DIR"/voice-input.words.json "$DIR"/voice-input.timing.json
+
+      - name: Compute capture duration fallback
+        id: dur
+        shell: bash
+        env:
+          PROJECT: ${{ inputs.project }}
+        run: |
+          python3 - >> "$GITHUB_OUTPUT" <<'PY'
+          import json, os, re
+          proj = os.environ["PROJECT"]
+          html = open(f"projects/{proj}/index.html", encoding="utf-8").read()
+          dur = ""
+          if "__duration" not in html:
+              t = json.load(open(f"projects/{proj}/voice-input.timing.json"))
+              speech = sum(v["dur"] for v in t.values())
+              gaps = 0.35 * max(len(t) - 1, 0)
+              dur = f"{speech + gaps + 1.2:.2f}"
+              print(f"HTML has no __duration; fallback duration {dur}s")
+          print(f"dur={dur}")
+          PY
+
+      - name: Capture frames (deterministic seek(t))
+        shell: bash
+        env:
+          DUR: ${{ steps.dur.outputs.dur }}
+        run: |
+          ARGS=""
+          if [ -n "$DUR" ]; then ARGS="--duration $DUR"; fi
+          python engine/capture.py \
+            --html "projects/${{ inputs.project }}/index.html" \
+            --out "build/${{ inputs.project }}/frames" \
+            --fps "${{ steps.proj.outputs.fps }}" \
+            --width "${{ steps.proj.outputs.width }}" \
+            --height "${{ steps.proj.outputs.height }}" $ARGS
+          echo "frames captured: $(ls build/${{ inputs.project }}/frames | wc -l)"
+
+      - name: Assemble master + review encode (-14 LUFS)
+        shell: bash
+        run: |
+          DIR="projects/${{ inputs.project }}"
+          MUSIC_ARG=""
+          for m in "$DIR"/assets/music.*; do
+            if [ -f "$m" ]; then MUSIC_ARG="--music $m"; break; fi
+          done
+          python engine/assemble.py \
+            --frames "build/${{ inputs.project }}/frames" \
+            --audio "$DIR/voice-input.audio.wav" \
+            --out "out/${{ inputs.project }}_master.mp4" \
+            --review "out/${{ inputs.project }}_review_720p.mp4" \
+            --fps "${{ steps.proj.outputs.fps }}" $MUSIC_ARG
+
+      - name: QA evidence — probe, loudness, contact sheet
+        shell: bash
+        run: |
+          MASTER="out/${{ inputs.project }}_master.mp4"
+          ffprobe -v error -show_entries format=duration,size,bit_rate \
+            -show_entries stream=codec_name,width,height,r_frame_rate \
+            -of json "$MASTER" > out/probe.json
+          cat out/probe.json
+          ffmpeg -nostdin -i "$MASTER" -map 0:a -af loudnorm=print_format=json \
+            -f null - 2> out/loudness.txt || true
+          python engine/contact_sheet.py "$MASTER" --out out/contact-sheet.jpg --count 12
+          ls -la out/
+
+      - name: Upload video artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-${{ inputs.project }}
+          path: |
+            out/${{ inputs.project }}_master.mp4
+            out/${{ inputs.project }}_review_720p.mp4
+            out/contact-sheet.jpg
+            out/probe.json
+            projects/${{ inputs.project }}/voice-input.words.json
+            projects/${{ inputs.project }}/voice-input.timing.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ inputs.release_tag }}
+          PROJECT: ${{ inputs.project }}
+          PRE: ${{ inputs.prerelease }}
+        shell: bash
+        run: |
+          NOTES="Opus Video Engine render of projects/$PROJECT (run ${{ github.run_id }}): deterministic seek(t) capture at ${{ steps.proj.outputs.fps }} fps, Edge TTS narration from the project's voice-input directives, -14 LUFS mix. Assets: 1080p master + 720p review encode. QA evidence (probe + contact sheet) is on the workflow run artifact and in runs/render/${{ github.run_id }}/."
+          PRE_FLAG=""
+          if [ "$PRE" = "true" ]; then PRE_FLAG="--prerelease"; fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" \
+              "out/${PROJECT}_master.mp4" "out/${PROJECT}_review_720p.mp4" --clobber
+          else
+            gh release create "$TAG" $PRE_FLAG \
+              --title "Video: $PROJECT (${TAG})" \
+              --notes "$NOTES" \
+              "out/${PROJECT}_master.mp4" "out/${PROJECT}_review_720p.mp4"
+          fi
+          gh release view "$TAG" --json url,tagName,assets \
+            --jq '{url, tag: .tagName, assets: [.assets[].name]}'
+
+      # Run record (AGENTS.md): status + probe + contact sheet committed
+      # to runs/render/<run-id>/. Videos live on the Release, not in git.
+      - name: Commit run record
+        if: always()
+        shell: bash
+        env:
+          PROJECT: ${{ inputs.project }}
+          TAG: ${{ inputs.release_tag }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          REC="runs/render/${{ github.run_id }}"
+          mkdir -p "$REC"
+          [ -f out/probe.json ] && cp out/probe.json "$REC/probe.json" || true
+          if [ -f out/contact-sheet.jpg ]; then
+            SIZE=$(stat -c%s out/contact-sheet.jpg)
+            if [ "$SIZE" -gt 512000 ]; then
+              ffmpeg -nostdin -y -i out/contact-sheet.jpg -vf scale=iw*0.7:-1 \
+                -q:v 6 "$REC/contact-sheet.jpg" || cp out/contact-sheet.jpg "$REC/contact-sheet.jpg"
+            else
+              cp out/contact-sheet.jpg "$REC/contact-sheet.jpg"
+            fi
+          fi
+          REC="$REC" python3 - <<'PY'
+          import json, os
+          rec = os.environ["REC"]
+          probe = {}
+          pj = os.path.join(rec, "probe.json")
+          if os.path.exists(pj):
+              probe = json.load(open(pj))
+          status = {
+              "workflow": "opus-render",
+              "run_id": os.environ.get("GITHUB_RUN_ID"),
+              "run_number": os.environ.get("GITHUB_RUN_NUMBER"),
+              "job_status": os.environ.get("JOB_STATUS"),
+              "sha": os.environ.get("GITHUB_SHA"),
+              "project": os.environ.get("PROJECT"),
+              "release_tag": os.environ.get("TAG"),
+              "probe": probe,
+              "note": "master + review encode live on the Release; full artifact on the run",
+          }
+          json.dump(status, open(os.path.join(rec, "status.json"), "w"), indent=1)
+          print(json.dumps(status))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$REC"
+          if git diff --cached --quiet; then
+            echo "nothing to record"
+          else
+            git commit -m "runs: opus-render ${{ github.run_id }} (${JOB_STATUS})"
+            for attempt in 1 2 3; do
+              git fetch origin "${{ github.ref_name }}"
+              git rebase "origin/${{ github.ref_name }}" || git rebase --abort
+              if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
+              echo "push rejected (attempt $attempt) - remote moved; rebasing and retrying"
+              sleep 5
+            done
+          fi
