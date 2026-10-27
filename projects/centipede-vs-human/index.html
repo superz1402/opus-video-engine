@@ -1,0 +1,568 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Centipede vs Human</title>
+<style>html,body{margin:0;padding:0;background:#08181d}canvas{display:block}</style></head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>
+"use strict";
+/* ============================================================
+   WHY A CENTIPEDE BODY IS DIFFERENT FROM HUMAN
+   Deterministic code-rendered explainer (Opus-5.5 method):
+   EVERYTHING is a pure function of t inside seek(t).
+   No timers, no CSS transitions, no state between frames.
+   ============================================================ */
+const TIMINGS = {"voice": "kokoro af_heart (fallback; Sonia blocked \u2014 GH_PAT absent, API 401)", "gap_between_scenes": 0.35, "scenes": [{"scene": 1, "file": "lines/s1.wav", "text": "A centipede is not a tiny human with more legs. It's a different body plan \u2014 and it starts with the legs. Fifteen pairs. Twenty-one. Sometimes over a hundred. Always odd. You have one pair.", "start": 0.0, "dur": 12.203, "end": 12.203, "words": [{"w": "A", "start": 0.0, "end": 0.079}, {"w": "centipede", "start": 0.079, "end": 0.787}, {"w": "is", "start": 0.787, "end": 0.945}, {"w": "not", "start": 0.945, "end": 1.181}, {"w": "a", "start": 1.181, "end": 1.26}, {"w": "tiny", "start": 1.26, "end": 1.575}, {"w": "human", "start": 1.575, "end": 1.968}, {"w": "with", "start": 1.968, "end": 2.283}, {"w": "more", "start": 2.283, "end": 2.598}, {"w": "legs.", "start": 2.598, "end": 2.992}, {"w": "It's", "start": 2.992, "end": 3.307}, {"w": "a", "start": 3.307, "end": 3.385}, {"w": "different", "start": 3.385, "end": 4.094}, {"w": "body", "start": 4.094, "end": 4.409}, {"w": "plan", "start": 4.409, "end": 4.724}, {"w": "\u2014", "start": 4.724, "end": 4.802}, {"w": "and", "start": 4.802, "end": 5.039}, {"w": "it", "start": 5.039, "end": 5.196}, {"w": "starts", "start": 5.196, "end": 5.668}, {"w": "with", "start": 5.668, "end": 5.983}, {"w": "the", "start": 5.983, "end": 6.219}, {"w": "legs.", "start": 6.219, "end": 6.613}, {"w": "Fifteen", "start": 6.613, "end": 7.164}, {"w": "pairs.", "start": 7.164, "end": 7.637}, {"w": "Twenty-one.", "start": 7.637, "end": 8.503}, {"w": "Sometimes", "start": 8.503, "end": 9.211}, {"w": "over", "start": 9.211, "end": 9.526}, {"w": "a", "start": 9.526, "end": 9.605}, {"w": "hundred.", "start": 9.605, "end": 10.234}, {"w": "Always", "start": 10.234, "end": 10.707}, {"w": "odd.", "start": 10.707, "end": 11.022}, {"w": "You", "start": 11.022, "end": 11.258}, {"w": "have", "start": 11.258, "end": 11.573}, {"w": "one", "start": 11.573, "end": 11.809}, {"w": "pair.", "start": 11.809, "end": 12.203}]}, {"scene": 2, "file": "lines/s2.wav", "text": "Its trunk is one module repeated: segment, legs, segment, legs \u2014 more added as it grows. Yours is the opposite idea: a few specialised parts, each built for one job.", "start": 12.553, "dur": 11.477, "end": 24.03, "words": [{"w": "Its", "start": 12.553, "end": 12.806}, {"w": "trunk", "start": 12.806, "end": 13.228}, {"w": "is", "start": 13.228, "end": 13.397}, {"w": "one", "start": 13.397, "end": 13.65}, {"w": "module", "start": 13.65, "end": 14.156}, {"w": "repeated:", "start": 14.156, "end": 14.916}, {"w": "segment,", "start": 14.916, "end": 15.591}, {"w": "legs,", "start": 15.591, "end": 16.013}, {"w": "segment,", "start": 16.013, "end": 16.688}, {"w": "legs", "start": 16.688, "end": 17.025}, {"w": "\u2014", "start": 17.025, "end": 17.11}, {"w": "more", "start": 17.11, "end": 17.447}, {"w": "added", "start": 17.447, "end": 17.869}, {"w": "as", "start": 17.869, "end": 18.038}, {"w": "it", "start": 18.038, "end": 18.207}, {"w": "grows.", "start": 18.207, "end": 18.713}, {"w": "Yours", "start": 18.713, "end": 19.135}, {"w": "is", "start": 19.135, "end": 19.304}, {"w": "the", "start": 19.304, "end": 19.557}, {"w": "opposite", "start": 19.557, "end": 20.232}, {"w": "idea:", "start": 20.232, "end": 20.654}, {"w": "a", "start": 20.654, "end": 20.739}, {"w": "few", "start": 20.739, "end": 20.992}, {"w": "specialised", "start": 20.992, "end": 21.92}, {"w": "parts,", "start": 21.92, "end": 22.427}, {"w": "each", "start": 22.427, "end": 22.764}, {"w": "built", "start": 22.764, "end": 23.186}, {"w": "for", "start": 23.186, "end": 23.439}, {"w": "one", "start": 23.439, "end": 23.692}, {"w": "job.", "start": 23.692, "end": 24.03}]}, {"scene": 3, "file": "lines/s3.wav", "text": "Even its weapons are legs. The venom fangs behind its head are the first pair of legs, remodelled into claws. No human arm ever did that.", "start": 24.38, "dur": 8.725, "end": 33.105, "words": [{"w": "Even", "start": 24.38, "end": 24.692}, {"w": "its", "start": 24.692, "end": 24.925}, {"w": "weapons", "start": 24.925, "end": 25.471}, {"w": "are", "start": 25.471, "end": 25.704}, {"w": "legs.", "start": 25.704, "end": 26.094}, {"w": "The", "start": 26.094, "end": 26.328}, {"w": "venom", "start": 26.328, "end": 26.717}, {"w": "fangs", "start": 26.717, "end": 27.107}, {"w": "behind", "start": 27.107, "end": 27.574}, {"w": "its", "start": 27.574, "end": 27.808}, {"w": "head", "start": 27.808, "end": 28.119}, {"w": "are", "start": 28.119, "end": 28.353}, {"w": "the", "start": 28.353, "end": 28.587}, {"w": "first", "start": 28.587, "end": 28.976}, {"w": "pair", "start": 28.976, "end": 29.288}, {"w": "of", "start": 29.288, "end": 29.444}, {"w": "legs,", "start": 29.444, "end": 29.833}, {"w": "remodelled", "start": 29.833, "end": 30.612}, {"w": "into", "start": 30.612, "end": 30.924}, {"w": "claws.", "start": 30.924, "end": 31.391}, {"w": "No", "start": 31.391, "end": 31.547}, {"w": "human", "start": 31.547, "end": 31.937}, {"w": "arm", "start": 31.937, "end": 32.17}, {"w": "ever", "start": 32.17, "end": 32.482}, {"w": "did", "start": 32.482, "end": 32.716}, {"w": "that.", "start": 32.716, "end": 33.105}]}, {"scene": 4, "file": "lines/s4.wav", "text": "No single brain runs the show. A centipede's nerve cord is a chain of small clusters \u2014 one per segment \u2014 so legs keep stepping on local orders. You run everything from one brain, down one cord.", "start": 33.455, "dur": 12.352, "end": 45.807, "words": [{"w": "No", "start": 33.455, "end": 33.613}, {"w": "single", "start": 33.613, "end": 34.085}, {"w": "brain", "start": 34.085, "end": 34.478}, {"w": "runs", "start": 34.478, "end": 34.793}, {"w": "the", "start": 34.793, "end": 35.029}, {"w": "show.", "start": 35.029, "end": 35.422}, {"w": "A", "start": 35.422, "end": 35.501}, {"w": "centipede's", "start": 35.501, "end": 36.366}, {"w": "nerve", "start": 36.366, "end": 36.76}, {"w": "cord", "start": 36.76, "end": 37.074}, {"w": "is", "start": 37.074, "end": 37.232}, {"w": "a", "start": 37.232, "end": 37.31}, {"w": "chain", "start": 37.31, "end": 37.704}, {"w": "of", "start": 37.704, "end": 37.861}, {"w": "small", "start": 37.861, "end": 38.255}, {"w": "clusters", "start": 38.255, "end": 38.884}, {"w": "\u2014", "start": 38.884, "end": 38.963}, {"w": "one", "start": 38.963, "end": 39.199}, {"w": "per", "start": 39.199, "end": 39.435}, {"w": "segment", "start": 39.435, "end": 39.985}, {"w": "\u2014", "start": 39.985, "end": 40.064}, {"w": "so", "start": 40.064, "end": 40.221}, {"w": "legs", "start": 40.221, "end": 40.536}, {"w": "keep", "start": 40.536, "end": 40.851}, {"w": "stepping", "start": 40.851, "end": 41.48}, {"w": "on", "start": 41.48, "end": 41.638}, {"w": "local", "start": 41.638, "end": 42.031}, {"w": "orders.", "start": 42.031, "end": 42.582}, {"w": "You", "start": 42.582, "end": 42.818}, {"w": "run", "start": 42.818, "end": 43.054}, {"w": "everything", "start": 43.054, "end": 43.84}, {"w": "from", "start": 43.84, "end": 44.155}, {"w": "one", "start": 44.155, "end": 44.391}, {"w": "brain,", "start": 44.391, "end": 44.863}, {"w": "down", "start": 44.863, "end": 45.178}, {"w": "one", "start": 45.178, "end": 45.414}, {"w": "cord.", "start": 45.414, "end": 45.807}]}, {"scene": 5, "file": "lines/s5.wav", "text": "It has no lungs. Air enters through pores along its sides, into branching tubes that deliver oxygen straight to the tissues \u2014 its blood carries none. Your lungs and blood do both jobs together.", "start": 46.157, "dur": 12.16, "end": 58.317, "words": [{"w": "It", "start": 46.157, "end": 46.309}, {"w": "has", "start": 46.309, "end": 46.537}, {"w": "no", "start": 46.537, "end": 46.689}, {"w": "lungs.", "start": 46.689, "end": 47.145}, {"w": "Air", "start": 47.145, "end": 47.373}, {"w": "enters", "start": 47.373, "end": 47.829}, {"w": "through", "start": 47.829, "end": 48.361}, {"w": "pores", "start": 48.361, "end": 48.741}, {"w": "along", "start": 48.741, "end": 49.121}, {"w": "its", "start": 49.121, "end": 49.349}, {"w": "sides,", "start": 49.349, "end": 49.805}, {"w": "into", "start": 49.805, "end": 50.109}, {"w": "branching", "start": 50.109, "end": 50.793}, {"w": "tubes", "start": 50.793, "end": 51.173}, {"w": "that", "start": 51.173, "end": 51.477}, {"w": "deliver", "start": 51.477, "end": 52.009}, {"w": "oxygen", "start": 52.009, "end": 52.465}, {"w": "straight", "start": 52.465, "end": 53.073}, {"w": "to", "start": 53.073, "end": 53.225}, {"w": "the", "start": 53.225, "end": 53.453}, {"w": "tissues", "start": 53.453, "end": 53.985}, {"w": "\u2014", "start": 53.985, "end": 54.061}, {"w": "its", "start": 54.061, "end": 54.289}, {"w": "blood", "start": 54.289, "end": 54.669}, {"w": "carries", "start": 54.669, "end": 55.201}, {"w": "none.", "start": 55.201, "end": 55.581}, {"w": "Your", "start": 55.581, "end": 55.885}, {"w": "lungs", "start": 55.885, "end": 56.265}, {"w": "and", "start": 56.265, "end": 56.493}, {"w": "blood", "start": 56.493, "end": 56.873}, {"w": "do", "start": 56.873, "end": 57.025}, {"w": "both", "start": 57.025, "end": 57.329}, {"w": "jobs", "start": 57.329, "end": 57.633}, {"w": "together.", "start": 57.633, "end": 58.317}]}, {"scene": 6, "file": "lines/s6.wav", "text": "Its heart is a tube as long as its body, pulsing in waves. Yours is one fist-sized pump with four chambers.", "start": 58.667, "dur": 6.784, "end": 65.451, "words": [{"w": "Its", "start": 58.667, "end": 58.901}, {"w": "heart", "start": 58.901, "end": 59.291}, {"w": "is", "start": 59.291, "end": 59.447}, {"w": "a", "start": 59.447, "end": 59.525}, {"w": "tube", "start": 59.525, "end": 59.837}, {"w": "as", "start": 59.837, "end": 59.993}, {"w": "long", "start": 59.993, "end": 60.305}, {"w": "as", "start": 60.305, "end": 60.461}, {"w": "its", "start": 60.461, "end": 60.695}, {"w": "body,", "start": 60.695, "end": 61.085}, {"w": "pulsing", "start": 61.085, "end": 61.63}, {"w": "in", "start": 61.63, "end": 61.786}, {"w": "waves.", "start": 61.786, "end": 62.254}, {"w": "Yours", "start": 62.254, "end": 62.644}, {"w": "is", "start": 62.644, "end": 62.8}, {"w": "one", "start": 62.8, "end": 63.034}, {"w": "fist-sized", "start": 63.034, "end": 63.814}, {"w": "pump", "start": 63.814, "end": 64.126}, {"w": "with", "start": 64.126, "end": 64.438}, {"w": "four", "start": 64.438, "end": 64.75}, {"w": "chambers.", "start": 64.75, "end": 65.451}]}, {"scene": 7, "file": "lines/s7.wav", "text": "Many centipedes are nearly blind \u2014 simple eyespots, or none at all. They read the world through their antennae. You navigate by sight; it navigates by touch.", "start": 65.801, "dur": 9.685, "end": 75.487, "words": [{"w": "Many", "start": 65.801, "end": 66.097}, {"w": "centipedes", "start": 66.097, "end": 66.836}, {"w": "are", "start": 66.836, "end": 67.058}, {"w": "nearly", "start": 67.058, "end": 67.502}, {"w": "blind", "start": 67.502, "end": 67.871}, {"w": "\u2014", "start": 67.871, "end": 67.945}, {"w": "simple", "start": 67.945, "end": 68.389}, {"w": "eyespots,", "start": 68.389, "end": 69.054}, {"w": "or", "start": 69.054, "end": 69.202}, {"w": "none", "start": 69.202, "end": 69.498}, {"w": "at", "start": 69.498, "end": 69.646}, {"w": "all.", "start": 69.646, "end": 69.942}, {"w": "They", "start": 69.942, "end": 70.237}, {"w": "read", "start": 70.237, "end": 70.533}, {"w": "the", "start": 70.533, "end": 70.755}, {"w": "world", "start": 70.755, "end": 71.125}, {"w": "through", "start": 71.125, "end": 71.642}, {"w": "their", "start": 71.642, "end": 72.012}, {"w": "antennae.", "start": 72.012, "end": 72.677}, {"w": "You", "start": 72.677, "end": 72.899}, {"w": "navigate", "start": 72.899, "end": 73.49}, {"w": "by", "start": 73.49, "end": 73.638}, {"w": "sight;", "start": 73.638, "end": 74.082}, {"w": "it", "start": 74.082, "end": 74.23}, {"w": "navigates", "start": 74.23, "end": 74.895}, {"w": "by", "start": 74.895, "end": 75.043}, {"w": "touch.", "start": 75.043, "end": 75.487}]}, {"scene": 8, "file": "lines/s8.wav", "text": "Two engineering philosophies. Ours: centralise and specialise. Theirs: repeat one simple module, and let every copy do everything. Neither is a draft of the other.", "start": 75.837, "dur": 11.157, "end": 86.994, "words": [{"w": "Two", "start": 75.837, "end": 76.077}, {"w": "engineering", "start": 76.077, "end": 76.96}, {"w": "philosophies.", "start": 76.96, "end": 78.004}, {"w": "Ours:", "start": 78.004, "end": 78.405}, {"w": "centralise", "start": 78.405, "end": 79.208}, {"w": "and", "start": 79.208, "end": 79.449}, {"w": "specialise.", "start": 79.449, "end": 80.332}, {"w": "Theirs:", "start": 80.332, "end": 80.894}, {"w": "repeat", "start": 80.894, "end": 81.375}, {"w": "one", "start": 81.375, "end": 81.616}, {"w": "simple", "start": 81.616, "end": 82.098}, {"w": "module,", "start": 82.098, "end": 82.659}, {"w": "and", "start": 82.659, "end": 82.9}, {"w": "let", "start": 82.9, "end": 83.141}, {"w": "every", "start": 83.141, "end": 83.542}, {"w": "copy", "start": 83.542, "end": 83.864}, {"w": "do", "start": 83.864, "end": 84.024}, {"w": "everything.", "start": 84.024, "end": 84.907}, {"w": "Neither", "start": 84.907, "end": 85.469}, {"w": "is", "start": 85.469, "end": 85.629}, {"w": "a", "start": 85.629, "end": 85.71}, {"w": "draft", "start": 85.71, "end": 86.111}, {"w": "of", "start": 86.111, "end": 86.272}, {"w": "the", "start": 86.272, "end": 86.512}, {"w": "other.", "start": 86.512, "end": 86.994}]}], "total_s": 86.994};
+const SENTENCES = [{"text": "A centipede is not a tiny human with more legs.", "start": 0.0, "end": 2.992}, {"text": "It's a different body plan \u2014 and it starts with the legs.", "start": 2.992, "end": 6.613}, {"text": "Fifteen pairs.", "start": 6.613, "end": 7.637}, {"text": "Twenty-one.", "start": 7.637, "end": 8.503}, {"text": "Sometimes over a hundred.", "start": 8.503, "end": 10.234}, {"text": "Always odd.", "start": 10.234, "end": 11.022}, {"text": "You have one pair.", "start": 11.022, "end": 12.203}, {"text": "Its trunk is one module repeated: segment, legs, segment, legs \u2014 more added as it grows.", "start": 12.553, "end": 18.713}, {"text": "Yours is the opposite idea: a few specialised parts, each built for one job.", "start": 18.713, "end": 24.03}, {"text": "Even its weapons are legs.", "start": 24.38, "end": 26.094}, {"text": "The venom fangs behind its head are the first pair of legs, remodelled into claws.", "start": 26.094, "end": 31.391}, {"text": "No human arm ever did that.", "start": 31.391, "end": 33.105}, {"text": "No single brain runs the show.", "start": 33.455, "end": 35.422}, {"text": "A centipede's nerve cord is a chain of small clusters \u2014 one per segment \u2014 so legs keep stepping on local orders.", "start": 35.422, "end": 42.582}, {"text": "You run everything from one brain, down one cord.", "start": 42.582, "end": 45.807}, {"text": "It has no lungs.", "start": 46.157, "end": 47.145}, {"text": "Air enters through pores along its sides, into branching tubes that deliver oxygen straight to the tissues \u2014 its blood carries none.", "start": 47.145, "end": 55.581}, {"text": "Your lungs and blood do both jobs together.", "start": 55.581, "end": 58.317}, {"text": "Its heart is a tube as long as its body, pulsing in waves.", "start": 58.667, "end": 62.254}, {"text": "Yours is one fist-sized pump with four chambers.", "start": 62.254, "end": 65.451}, {"text": "Many centipedes are nearly blind \u2014 simple eyespots, or none at all.", "start": 65.801, "end": 69.942}, {"text": "They read the world through their antennae.", "start": 69.942, "end": 72.677}, {"text": "You navigate by sight; it navigates by touch.", "start": 72.677, "end": 75.487}, {"text": "Two engineering philosophies.", "start": 75.837, "end": 78.004}, {"text": "Ours: centralise and specialise.", "start": 78.004, "end": 80.332}, {"text": "Theirs: repeat one simple module, and let every copy do everything.", "start": 80.332, "end": 84.907}, {"text": "Neither is a draft of the other.", "start": 84.907, "end": 86.994}];
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const W = 1920, H = 1080, FPS = 30;
+const DUR = TIMINGS.total_s + 1.2;
+
+/* ---------- palette / design system ---------- */
+const COL = {
+  bg: '#0b2129', bg2: '#0e2a33', panel: '#10333d', panelEdge: '#1d4a56',
+  ink: '#eaf4ee', dim: '#9db8ad', faint: '#5f7f78',
+  cent: '#a8d95c', centDeep: '#4d9e4f', centDark: '#2c6e3e', centGlow: '#d7f79b',
+  hum: '#ff9d76', humDeep: '#e56b4e', humSoft: '#ffd9c4',
+  nerve: '#57e6c9', blood: '#ff5a5a', bloodPale: '#7d8a94', air: '#aee7ff',
+  gold: '#ffd166', red: '#ff5252', paper: '#f3ead8'
+};
+const FONT = '"Avenir Next","Segoe UI",Arial,Helvetica,sans-serif';
+const FONTD = '"Arial Narrow","Avenir Next Condensed",Arial,sans-serif';
+
+/* ---------- math helpers (all pure) ---------- */
+const clamp = (v,a,b)=> v<a?a : v>b?b : v;
+const lerp = (a,b,u)=> a+(b-a)*u;
+const ss = (a,b,v)=>{ const u = clamp((v-a)/(b-a),0,1); return u*u*(3-2*u); };
+const easeOut = u => 1-Math.pow(1-clamp(u,0,1),3);
+const easeInOut = u => { u=clamp(u,0,1); return u<.5 ? 2*u*u : 1-Math.pow(-2*u+2,2)/2; };
+/* closed-form damped spring step response (twoclipping trick) */
+function spring(u, zeta=0.32, omega=11){
+  u = clamp(u,0,1.4); if(u<=0) return 0;
+  const wd = omega*Math.sqrt(1-zeta*zeta);
+  return 1 - Math.exp(-zeta*omega*u) * (Math.cos(wd*u) + (zeta/Math.sqrt(1-zeta*zeta))*Math.sin(wd*u));
+}
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function rr(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+function txt(s,x,y,size,fill,align='center',weight=700,font=FONT,alpha=1,spacing=0){
+  ctx.save(); ctx.globalAlpha*=alpha; ctx.fillStyle=fill; ctx.font=`${weight} ${size}px ${font}`;
+  ctx.textAlign=align; ctx.textBaseline='middle';
+  if(spacing){ /* manual letterspacing */
+    const widths=[...s].map(ch=>ctx.measureText(ch).width);
+    const total=widths.reduce((a,b)=>a+b,0)+spacing*(s.length-1);
+    let cx = align==='center' ? x-total/2 : align==='right' ? x-total : x;
+    [...s].forEach((ch,i)=>{ ctx.fillText(ch, cx+widths[i]/2, y); cx += widths[i]+spacing; });
+  } else ctx.fillText(s,x,y);
+  ctx.restore();
+}
+function stamp(s,x,y,size,color,rot,alpha){
+  ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.globalAlpha*=alpha;
+  ctx.strokeStyle=color; ctx.lineWidth=5; const w=ctx.measureText(s).width;
+  ctx.font=`900 ${size}px ${FONTD}`; const tw=ctx.measureText(s).width;
+  rr(-tw/2-26,-size*0.78,tw+52,size*1.56,10); ctx.stroke();
+  ctx.globalAlpha*=0.92; txt(s,0,2,size,color,'center',900,FONTD);
+  ctx.restore();
+}
+/* deterministic film grain overlay */
+const grain = (()=>{ const g=document.createElement('canvas'); g.width=W; g.height=H;
+  const gx=g.getContext('2d'); const img=gx.createImageData(W,H); const rnd=mulberry32(1234567);
+  for(let i=0;i<img.data.length;i+=4){ const v=200+Math.floor(rnd()*55); img.data[i]=v; img.data[i+1]=v; img.data[i+2]=v; img.data[i+3]=14; }
+  gx.putImageData(img,0,0); return g; })();
+function vignette(){ const g=ctx.createRadialGradient(W/2,H/2,H*0.36,W/2,H/2,H*0.95);
+  g.addColorStop(0,'rgba(0,0,0,0)'); g.addColorStop(1,'rgba(0,0,0,0.42)');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H); ctx.drawImage(grain,0,0); }
+
+/* ---------- shared diagrams ---------- */
+/* Centipede: side view, head at left. Spine follows a gentle travelling wave.
+   opts: x,y,len,segs,t, move(0..1 leg swing), bodyR, alpha, segGlow(i)->0..1,
+         legAlpha, xray (translucent body), antennaSweep (radians), legOverride(i,side)->angle */
+function drawCentipede(o){
+  const segs=o.segs||21, len=o.len||900, t=o.t||0;
+  const pts=[];
+  for(let i=0;i<segs;i++){ const u=i/(segs-1);
+    const waveA=(o.waveAmp==null?10:o.waveAmp)*Math.sin(u*Math.PI*0.9);
+    const y=o.y + Math.sin(u*5.2 - t*2.1)*waveA*0.35 + Math.sin(u*Math.PI)* (o.arch||0);
+    pts.push({x:o.x - len/2 + u*len, y, u, r: lerp(o.headR||30, o.tailR||11, Math.pow(u,0.8))});
+  }
+  ctx.save(); ctx.globalAlpha*= (o.alpha==null?1:o.alpha);
+  /* legs (behind body) */
+  const move=o.move==null?1:o.move;
+  for(let i=1;i<segs;i++){ const p=pts[i]; if(p.r<9) continue;
+    for(const side of [-1,1]){
+      const ph = t*7.2 - i*0.62 + (side>0?0.5:0);
+      const swing = Math.sin(ph)*0.38*move;
+      const hipx=p.x, hipy=p.y + p.r*0.5;
+      const seg1=(o.legLen||52)*(p.r/26);
+      const a1 = Math.PI/2 + side*0.55 + swing*0.6;
+      const kx=hipx+Math.cos(a1)*seg1*0.62, ky=hipy+Math.sin(a1)*seg1*0.62;
+      const a2 = a1 + 0.85 + swing*0.5;
+      const fx=kx+Math.cos(a2)*seg1*0.75, fy=ky+Math.sin(a2)*seg1*0.75;
+      ctx.strokeStyle=o.legColor||COL.centDeep; ctx.lineWidth=Math.max(3,p.r*0.30);
+      ctx.lineCap='round'; ctx.globalAlpha*=(o.legAlpha==null?0.95:o.legAlpha);
+      ctx.beginPath(); ctx.moveTo(hipx,hipy); ctx.lineTo(kx,ky); ctx.lineTo(fx,fy); ctx.stroke();
+      ctx.globalAlpha/=(o.legAlpha==null?0.95:o.legAlpha);
+    }
+  }
+  /* body segments */
+  for(let i=segs-1;i>=0;i--){ const p=pts[i];
+    const glow=o.segGlow? clamp(o.segGlow(i),0,1):0;
+    const g=ctx.createRadialGradient(p.x-p.r*0.3,p.y-p.r*0.35,p.r*0.2,p.x,p.y,p.r*1.25);
+    if(o.xray){ g.addColorStop(0,'rgba(168,217,92,0.20)'); g.addColorStop(1,'rgba(77,158,79,0.10)'); }
+    else { g.addColorStop(0, glow>0.03? COL.centGlow : COL.cent); g.addColorStop(1, glow>0.03? COL.cent : COL.centDeep); }
+    ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(p.x,p.y,p.r*1.12,p.r,0,0,Math.PI*2); ctx.fill();
+    if(o.xray){ ctx.strokeStyle='rgba(215,247,155,0.55)'; ctx.lineWidth=2; ctx.stroke(); }
+    else if(glow>0.03){ ctx.strokeStyle=COL.centGlow; ctx.lineWidth=2.5; ctx.stroke(); }
+  }
+  /* head + antennae */
+  const hp=pts[0];
+  ctx.fillStyle=o.xray?'rgba(168,217,92,0.25)':COL.cent;
+  ctx.beginPath(); ctx.ellipse(hp.x-hp.r*0.5,hp.y,hp.r*1.05,hp.r*0.92,0,0,Math.PI*2); ctx.fill();
+  const sweep=(o.antennaSweep==null? Math.sin(t*1.7)*0.16 : o.antennaSweep);
+  for(const s of [-1,1]){
+    const bx=hp.x-hp.r*1.2, by=hp.y+s*hp.r*0.4;
+    const a=Math.PI + s*(0.5+sweep) ;
+    const mx=bx+Math.cos(a)*(o.antLen||92)*0.55, my=by+Math.sin(a)*(o.antLen||92)*0.55 + s*10;
+    const tx2=bx+Math.cos(a+ s*0.22)*(o.antLen||92), ty2=by+Math.sin(a+s*0.22)*(o.antLen||92);
+    ctx.strokeStyle=o.legColor||COL.centDeep; ctx.lineWidth=5; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(bx,by); ctx.quadraticCurveTo(mx,my,tx2,ty2); ctx.stroke();
+  }
+  ctx.restore();
+  return pts;
+}
+/* simple standing human; o: x (feet center), y (feet), h (height), t, zoneGlow:{head,trunk,limbs}, xray */
+function drawHuman(o){
+  const h=o.h||430, x=o.x, y=o.y, u=h/430;
+  ctx.save(); ctx.globalAlpha*=(o.alpha==null?1:o.alpha);
+  const skin=o.xray?'rgba(255,157,118,0.25)':COL.hum, edge=o.xray?'rgba(255,217,196,0.8)':COL.humDeep;
+  const glowC=COL.gold;
+  function part(draw, glow){ ctx.save(); if(glow>0.03){ ctx.shadowColor=glowC; ctx.shadowBlur=26*glow; } draw(); ctx.restore(); }
+  const zg=o.zoneGlow||{};
+  /* legs */
+  part(()=>{ ctx.strokeStyle=skin; ctx.lineWidth=30*u; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(x-16*u,y-150*u); ctx.lineTo(x-30*u,y-8); ctx.moveTo(x+16*u,y-150*u); ctx.lineTo(x+34*u,y-8); ctx.stroke(); }, zg.limbs||0);
+  /* arms */
+  part(()=>{ ctx.strokeStyle=skin; ctx.lineWidth=24*u;
+    ctx.beginPath(); ctx.moveTo(x-52*u,y-300*u); ctx.lineTo(x-96*u,y-168*u); ctx.moveTo(x+52*u,y-300*u); ctx.lineTo(x+98*u,y-172*u); ctx.stroke(); }, zg.limbs||0);
+  /* trunk */
+  part(()=>{ ctx.fillStyle=skin; rr(x-58*u,y-318*u,116*u,182*u,40*u); ctx.fill(); if(o.xray){ctx.strokeStyle=edge;ctx.lineWidth=2;ctx.stroke();} }, zg.trunk||0);
+  /* head */
+  part(()=>{ ctx.fillStyle=skin; ctx.beginPath(); ctx.arc(x,y-368*u,44*u,0,Math.PI*2); ctx.fill(); if(o.xray){ctx.strokeStyle=edge;ctx.lineWidth=2;ctx.stroke();} }, zg.head||0);
+  ctx.restore();
+}
+function figLabel(fig, title, sub){
+  txt(fig, 64, 58, 30, COL.gold, 'left', 800, FONTD, 1, 3);
+  txt(title, 64, 102, 44, COL.ink, 'left', 800, FONT);
+  if(sub) txt(sub, 64, 142, 26, COL.dim, 'left', 500, FONT);
+  txt('CENTIPEDE  vs  HUMAN', W-64, 58, 24, COL.faint, 'right', 700, FONTD, 1, 3);
+}
+function vsTag(cx, y, leftLabel, rightLabel, alpha){
+  ctx.save(); ctx.globalAlpha*=alpha;
+  const w1=ctx.measureText(leftLabel).width;
+  txt(leftLabel, cx-36, y, 30, COL.cent, 'right', 800, FONTD);
+  txt('·', cx, y, 30, COL.faint, 'center', 800);
+  txt(rightLabel, cx+36, y, 30, COL.hum, 'left', 800, FONTD);
+  ctx.restore();
+}
+function wordTime(si, word){ const sc=TIMINGS.scenes[si]; const w=sc.words.find(w=>w.w.replace(/[.,—]/g,'')===word.replace(/[.,—]/g,'')); return w? w.start : sc.start; }
+function sStart(i){ return TIMINGS.scenes[i].start; }
+function sDur(i){ return TIMINGS.scenes[i].dur; }
+/* caption for absolute time t */
+function drawCaption(t){
+  for(const s of SENTENCES){ if(t>=s.start-0.05 && t<=s.end+0.28){
+    const a = ss(s.start-0.05, s.start+0.22, t) * (1-ss(s.end+0.05, s.end+0.28, t));
+    ctx.save(); ctx.globalAlpha=a;
+    ctx.font=`600 37px ${FONT}`;
+    const maxW=1420; const words=s.text.split(' '); const lines=[]; let line='';
+    for(const w of words){ const test=line? line+' '+w : w; if(ctx.measureText(test).width>maxW && line){ lines.push(line); line=w; } else line=test; }
+    if(line) lines.push(line);
+    const bh=lines.length*48+30, by=H-64-bh;
+    ctx.fillStyle='rgba(4,16,20,0.78)'; rr(W/2-(maxW+72)/2, by, maxW+72, bh, 14); ctx.fill();
+    ctx.fillStyle=COL.gold; ctx.fillRect(W/2-(maxW+72)/2, by, 6, bh);
+    lines.forEach((L,i)=> txt(L, W/2, by+34+i*48, 37, COL.ink, 'center', 600, FONT));
+    ctx.restore(); return;
+  }}
+}
+
+/* ================= SCENES ================= */
+function sceneAlpha(i,t){ const st=sStart(i), en=st+sDur(i); return ss(st-0.28,st+0.05,t)*(1-ss(en-0.05,en+0.28,t)); }
+
+function drawS1(t){
+  const i=0, st=sStart(i), lt=t-st;
+  figLabel('FIG. 1 — LEGS','Not a small human','a different body plan, starting at the ground');
+  /* title slam, first seconds */
+  const ta = 1-ss(2.5,3.3,lt);
+  if(ta>0){ const sc=spring(lt/0.55);
+    ctx.save(); ctx.globalAlpha=ta; ctx.translate(W/2,300); ctx.scale(sc,sc); ctx.rotate(-0.012);
+    txt('NOT A SMALL', 0,-58, 128, COL.ink,'center',900,FONTD);
+    txt('HUMAN.', 0, 62, 128, COL.red,'center',900,FONTD);
+    ctx.restore();
+    txt('a completely different  BODY PLAN', W/2, 452, 36, COL.dim,'center',600,FONT, ss(0.5,1.1,lt)*ta, 2);
+  }
+  /* centipede runs in */
+  const enter = easeInOut(clamp((lt-2.4)/2.8,0,1));
+  const cx = lerp(-640, 830, enter);
+  const running = lt<5.4?1:0.4;
+  const pts = drawCentipede({x:cx, y:640, len:1060, segs:21, t:t*1.15, move:running, legLen:58, headR:32, tailR:12, antLen:100});
+  if(enter>0.6) txt('THIS ONE — 21 PAIRS OF LEGS', cx, 830, 30, COL.cent,'center',800,FONTD, ss(0.6,0.85,enter));
+  /* leg-pair counter, word-locked */
+  const tF=wordTime(i,'Fifteen')-st, tT=wordTime(i,'Twenty-one')-st, tS=wordTime(i,'Sometimes')-st, tA=wordTime(i,'Always')-st;
+  const cyc=[27,39,57,83,115,151,191];
+  let val='— —', stepT=lt;
+  if(lt>=tF && lt<tT){ val='15'; stepT=lt-tF; }
+  else if(lt>=tT && lt<tS){ val='21'; stepT=lt-tT; }
+  else if(lt>=tS && lt<tA){ const k=Math.min(6,Math.floor((lt-tS)/0.17)); val=String(cyc[k]); stepT=(lt-tS)-k*0.17; }
+  else if(lt>=tA){ val='191'; stepT=lt-tA; }
+  if(lt>tF-0.4){
+    ctx.save(); ctx.globalAlpha=ss(tF-0.4,tF+0.1,lt);
+    txt('LEG PAIRS', 1560, 218, 28, COL.dim,'center',700,FONTD,1,4);
+    const pop=1+0.22*Math.exp(-5*Math.max(0,stepT))*Math.cos(9*Math.max(0,stepT));
+    ctx.translate(1560,318); ctx.scale(pop,pop);
+    txt(val, 0, 0, 120, COL.gold,'center',900,FONTD);
+    ctx.restore();
+    if(lt>=tA) stamp('ALWAYS ODD', 1560, 452, 44, COL.red, -0.06, ss(tA,tA+0.25,lt)*(0.75+0.25*Math.sin(t*30)*Math.exp(-(lt-tA)*2)));
+  }
+  /* human */
+  const hu = ss(wordTime(i,'You')-st-0.1, wordTime(i,'You')-st+0.5, lt);
+  if(hu>0){ drawHuman({x:1560, y:930, h:330, t, alpha:hu});
+    txt('HUMAN — 1 PAIR', 1560, 528, 28, COL.hum,'center',800,FONTD,hu); }
+}
+function drawS2(t){
+  const i=1, st=sStart(i), lt=t-st;
+  figLabel('FIG. 2 — SEGMENTS','One module, repeated','growth by addition — not by specialisation');
+  const lit = Math.floor(ss(0.4,4.6,lt)*15);
+  const glowFn=(k)=>{ const on=st+0.4+k*0.28; const p=t-on; return (k<lit?0.30:0) + (p>0? Math.exp(-2.0*p)*1.1 : 0); };
+  const pts = drawCentipede({x:830, y:400, len:1180, segs:15, t:t*0.5, move:0.12, legLen:66, headR:40, tailR:20, segGlow:glowFn, antLen:110});
+  pts.forEach((p,k)=>{ if(k<lit) txt('S'+(k+1), p.x, 545, 22, COL.faint,'center',700,FONTD, ss(st+0.4+k*0.28, st+0.7+k*0.28, t)); });
+  /* +1 segment growing at the rear */
+  const tMore=wordTime(i,'more')-st;
+  const g=spring(clamp((lt-tMore)/0.9,0,1.2));
+  if(g>0.02){ const tail=pts[pts.length-1];
+    ctx.save(); ctx.globalAlpha=g; ctx.translate(tail.x+66*g, tail.y); ctx.scale(g,g);
+    ctx.fillStyle=COL.cent; ctx.beginPath(); ctx.ellipse(0,0,26,20,0,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle=COL.centDeep; ctx.lineWidth=6; ctx.lineCap='round';
+    for(const s of [-1,1]){ ctx.beginPath(); ctx.moveTo(0,10); ctx.lineTo(s*16,44); ctx.stroke(); }
+    ctx.restore();
+    txt('+1 SEGMENT', tail.x+66, tail.y-72, 27, COL.gold,'center',800,FONTD, g);
+  }
+  txt('ONE MODULE × N', 830, 640, 40, COL.cent,'center',900,FONTD, ss(1.2,2.0,lt));
+  /* human zones */
+  const tSpec=wordTime(i,'specialised')-st;
+  const zg={ head: Math.exp(-1.6*Math.max(0,lt-tSpec))* (lt>tSpec?1:0)+0.0,
+             trunk: Math.exp(-1.6*Math.max(0,lt-(tSpec+0.55)))*(lt>tSpec+0.55?1:0),
+             limbs: Math.exp(-1.6*Math.max(0,lt-(tSpec+1.1)))*(lt>tSpec+1.1?1:0) };
+  drawHuman({x:330, y:1010, h:400, t, zoneGlow:zg});
+  const za=ss(tSpec-0.2,tSpec+0.3,lt);
+  if(za>0){ ctx.save(); ctx.globalAlpha=za;
+    txt('HEAD', 92, 622, 26, COL.hum,'left',800,FONTD);
+    txt('TRUNK', 92, 742, 26, COL.hum,'left',800,FONTD);
+    txt('LIMBS', 92, 880, 26, COL.hum,'left',800,FONTD);
+    ctx.restore(); }
+  vsTag(960, 985, 'REPEAT A SIMPLE PART', 'SPECIALISE EACH PART', ss(5.2,6.2,lt));
+}
+function drawS3(t){
+  const i=2, st=sStart(i), lt=t-st;
+  figLabel('FIG. 3 — WEAPONS','The fangs are legs','first leg pair, remodelled into venom claws');
+  /* big head */
+  const hx=560, hy=470, hr=150;
+  const g1=ctx.createRadialGradient(hx-40,hy-50,30,hx,hy,200);
+  g1.addColorStop(0,COL.cent); g1.addColorStop(1,COL.centDeep);
+  ctx.fillStyle=g1; ctx.beginPath(); ctx.ellipse(hx,hy,hr*1.08,hr*0.94,0,0,Math.PI*2); ctx.fill();
+  /* ocelli */
+  ctx.fillStyle='#123524'; [[-58,-52],[-16,-70],[28,-64],[66,-44]].forEach(([dx,dy])=>{ ctx.beginPath(); ctx.arc(hx+dx,hy+dy,11,0,Math.PI*2); ctx.fill(); });
+  /* antennae */
+  for(const s of [-1,1]){ const sw=Math.sin(t*1.9+s)*14;
+    ctx.strokeStyle=COL.centDeep; ctx.lineWidth=9; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(hx-130,hy+s*66); ctx.quadraticCurveTo(hx-290,hy+s*130+sw,hx-430,hy+s*96+sw*1.6); ctx.stroke(); }
+  /* mouthparts hint */
+  ctx.strokeStyle=COL.centDark; ctx.lineWidth=7;
+  ctx.beginPath(); ctx.moveTo(hx-120,hy+96); ctx.quadraticCurveTo(hx-150,hy+150,hx-104,hy+172); ctx.stroke();
+  /* the morphing first appendage: leg -> forcipule */
+  const tV=wordTime(i,'venom')-st;
+  const m=ss(tV, tV+2.3, lt);
+  const bx=hx+96, by=hy+128;
+  const jx=lerp(bx+26, bx+96, m), jy=lerp(by+120, by+96, m);
+  const txp=lerp(bx+4, bx+186, m), typ=lerp(by+238, by+196, m);
+  ctx.lineCap='round';
+  ctx.strokeStyle=COL.gold; ctx.lineWidth=lerp(13,24,m);
+  ctx.beginPath(); ctx.moveTo(bx,by); ctx.lineTo(jx,jy); ctx.lineTo(txp,typ); ctx.stroke();
+  /* claw curve overlay as morph completes */
+  if(m>0.45){ ctx.save(); ctx.globalAlpha=(m-0.45)/0.55;
+    ctx.strokeStyle='#ffb703'; ctx.lineWidth=10;
+    ctx.beginPath(); ctx.moveTo(jx,jy); ctx.quadraticCurveTo(txp+26,typ+8,txp-6,typ+52); ctx.stroke(); ctx.restore(); }
+  /* venom gland + droplet */
+  if(m>0.15){ ctx.save(); ctx.globalAlpha=m;
+    ctx.fillStyle='rgba(255,183,3,0.85)'; ctx.beginPath(); ctx.ellipse(bx-16,by-8,26,17,-0.5,0,Math.PI*2); ctx.fill();
+    txt('VENOM GLAND', bx-120, by-44, 24, COL.gold,'center',700,FONTD);
+    ctx.restore(); }
+  if(m>0.9){ const dt0=tV+2.3; const cyc=((lt-dt0)%1.9+1.9)%1.9;
+    if(cyc<0.85){ const dy=cyc*cyc*150; ctx.fillStyle=COL.gold;
+      ctx.beginPath(); ctx.ellipse(txp-6, typ+62+dy, 9, 13+cyc*7, 0,0,Math.PI*2); ctx.fill(); } }
+  /* labels + dotted lineage */
+  ctx.save(); ctx.setLineDash([4,9]); ctx.strokeStyle=COL.faint; ctx.lineWidth=2.5;
+  ctx.beginPath(); ctx.moveTo(bx+10,by+250); ctx.lineTo(txp,typ+16); ctx.stroke(); ctx.restore();
+  txt('LEG', bx+6, by+292, 30, COL.dim,'center',800,FONTD, 1-m*0.55);
+  txt('FORCIPULE — A LEG, REMODELLED', txp+30, typ+112, 32, COL.gold,'center',900,FONTD, m);
+  /* human arm that stayed an arm */
+  const ax=1470, ay=330;
+  ctx.save(); ctx.strokeStyle=COL.hum; ctx.lineWidth=34; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(ax+130,ay+150); ctx.lineTo(ax+120,ay+300); ctx.stroke();
+  ctx.lineWidth=11;
+  for(let f=0;f<5;f++){ const fa=-0.5+f*0.24; ctx.beginPath(); ctx.moveTo(ax+120,ay+300); ctx.lineTo(ax+120+Math.sin(fa)*66, ay+300+Math.cos(fa)*66); ctx.stroke(); }
+  ctx.restore();
+  txt('AN ARM', ax+70, ay-56, 30, COL.hum,'center',800,FONTD);
+  const tH=wordTime(i,'human')-st;
+  if(lt>tH){ const p=spring(clamp((lt-tH)/0.5,0,1.2));
+    ctx.save(); ctx.translate(ax+122,ay+330); ctx.scale(p,p); ctx.rotate(-0.5);
+    ctx.strokeStyle=COL.red; ctx.lineWidth=10;
+    ctx.beginPath(); ctx.arc(0,0,86,0,Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-62,-62); ctx.lineTo(62,62); ctx.stroke(); ctx.restore();
+    txt('NEVER A WEAPON', ax+70, ay+520, 30, COL.red,'center',900,FONTD, p); }
+}
+function drawS4(t){
+  const i=3, st=sStart(i), lt=t-st;
+  figLabel('FIG. 4 — NERVE CORD','A chain of little brains','local orders, segment by segment');
+  const pts = drawCentipede({x:760, y:430, len:1180, segs:21, t:t*0.5, move:0.22, legLen:58, headR:34, tailR:13, xray:true, antLen:100});
+  /* ventral nerve cord, draws on */
+  const cord = pts.map(p=>({x:p.x, y:p.y+p.r*0.42}));
+  const dp = ss(0.7, 3.6, lt);
+  ctx.save(); ctx.strokeStyle=COL.nerve; ctx.lineWidth=5; ctx.lineCap='round';
+  ctx.shadowColor=COL.nerve; ctx.shadowBlur=12;
+  ctx.beginPath();
+  const total=cord.length-1, upto=dp*total, full=Math.floor(upto);
+  cord.forEach((p,k)=>{ if(k===0) ctx.moveTo(p.x,p.y); else if(k<=full) ctx.lineTo(p.x,p.y); });
+  if(full<total){ const a=cord[full], b=cord[full+1]; ctx.lineTo(lerp(a.x,b.x,upto-full), lerp(a.y,b.y,upto-full)); }
+  ctx.stroke(); ctx.restore();
+  /* ganglia pulse wave */
+  if(dp>0.95){ const pc=((lt-3.6)%2.8+2.8)%2.8/2.8;
+    cord.forEach((p,k)=>{ const u=k/(cord.length-1); const d=Math.abs(u-pc); const glow=Math.exp(-d*d*260);
+      ctx.save(); ctx.fillStyle=COL.nerve; ctx.shadowColor=COL.nerve; ctx.shadowBlur=22*glow;
+      ctx.globalAlpha=0.75+0.25*glow; ctx.beginPath(); ctx.arc(p.x,p.y, 8+7*glow,0,Math.PI*2); ctx.fill(); ctx.restore();
+      if(glow>0.55){ ctx.strokeStyle='rgba(87,230,201,0.5)'; ctx.lineWidth=3;
+        ctx.beginPath(); ctx.moveTo(p.x,p.y+8); ctx.lineTo(p.x-14,p.y+44); ctx.moveTo(p.x,p.y+8); ctx.lineTo(p.x+14,p.y+44); ctx.stroke(); }
+    });
+    txt('ONE GANGLION PER SEGMENT', 760, 640, 34, COL.nerve,'center',800,FONTD, ss(4.0,4.8,lt));
+    txt('legs keep stepping on local orders', 760, 690, 27, COL.dim,'center',500,FONT, ss(4.6,5.4,lt));
+  }
+  /* human xray: brain + single cord, top-down signal */
+  drawHuman({x:1600, y:990, h:430, t, xray:true});
+  const hb={x:1600, y:990-368*(430/430)};
+  ctx.save();
+  ctx.fillStyle=COL.hum; ctx.shadowColor=COL.hum; ctx.shadowBlur=18;
+  ctx.beginPath(); ctx.arc(1600, 622, 26,0,Math.PI*2); ctx.fill(); ctx.restore();
+  ctx.strokeStyle=COL.hum; ctx.lineWidth=6; ctx.beginPath(); ctx.moveTo(1600,648); ctx.lineTo(1600,838); ctx.stroke();
+  const sigT = ss(st+ sDur(i)*0.60, st+sDur(i)*0.60+2.4, t);
+  if(sigT>0 && sigT<1){ const sy=lerp(648,838,sigT);
+    ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(1600,sy,9,0,Math.PI*2); ctx.fill(); }
+  txt('ONE BRAIN', 1600, 520, 30, COL.hum,'center',800,FONTD, ss(sDur(i)*0.55, sDur(i)*0.62, lt));
+  txt('ONE CORD', 1600, 900, 26, COL.hum,'center',700,FONTD, ss(sDur(i)*0.6, sDur(i)*0.68, lt));
+  txt('every order travels from the top', 1600, 1030, 25, COL.dim,'center',500,FONT, ss(sDur(i)*0.66, sDur(i)*0.74, lt));
+}
+function drawS5(t){
+  const i=4, st=sStart(i), lt=t-st;
+  figLabel('FIG. 5 — BREATHING','No lungs','air goes straight to the tissues — the blood sits this one out');
+  /* centipede flank, big */
+  const y=430, x0=170, x1=1180, segs=13;
+  const segW=(x1-x0)/segs;
+  for(let k=segs-1;k>=0;k--){ const cx=x0+segW*(k+0.5);
+    const g=ctx.createRadialGradient(cx-20,y-40,20,cx,y,120);
+    g.addColorStop(0,COL.cent); g.addColorStop(1,COL.centDeep);
+    ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(cx,y,segW*0.56,86,0,0,Math.PI*2); ctx.fill(); }
+  /* tracheal tree: recursive deterministic branches from each spiracle */
+  const paths=[];
+  function branch(x,y,ang,len,wid,depth,out){ if(depth===0||len<7) return;
+    const nx=x+Math.cos(ang)*len, ny=y+Math.sin(ang)*len; out.push([x,y,nx,ny,wid]);
+    branch(nx,ny,ang-0.42,len*0.72,wid*0.7,depth-1,out); branch(nx,ny,ang+0.38,len*0.72,wid*0.7,depth-1,out);
+    if(depth>2) branch(nx,ny,ang+0.02,len*0.66,wid*0.66,depth-1,out); }
+  const spiracles=[];
+  for(let k=1;k<segs;k+=2){ const sx=x0+segW*k, sy=y+64; spiracles.push({x:sx,y:sy,k});
+    const segsArr=[]; branch(sx,sy, Math.PI/2+0.25, 44, 5, 4, segsArr); paths.push(segsArr);
+    ctx.fillStyle='#0a2e1a'; ctx.beginPath(); ctx.ellipse(sx,sy,11,7,0,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle=COL.centGlow; ctx.lineWidth=2.5; ctx.stroke(); }
+  const treeA = ss(1.0, 2.6, lt);
+  ctx.save(); ctx.globalAlpha=treeA; ctx.strokeStyle='rgba(174,231,255,0.75)'; ctx.lineCap='round';
+  paths.forEach(segsArr=> segsArr.forEach(([ax,ay,bx,by,w])=>{ ctx.lineWidth=w; ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by); ctx.stroke(); }));
+  ctx.restore();
+  txt('SPIRACLES', spiracles[1].x, y+150, 26, COL.air,'center',800,FONTD, treeA);
+  txt('TRACHEAE → TISSUE', 670, y+212, 32, COL.air,'center',800,FONTD, treeA);
+  /* air particles flowing in (deterministic: position is a pure function of seed & t) */
+  if(treeA>0.5){ const rnd=mulberry32(777);
+    for(let p=0;p<70;p++){ const sd=rnd(), sp=spiracles[Math.floor(rnd()*spiracles.length)];
+      const segsArr=paths[spiracles.indexOf(sp)]; if(!segsArr) continue;
+      const life=((t*(0.24+sd*0.2) + sd*7)%1);
+      const segIdx=Math.min(segsArr.length-1, Math.floor(life*segsArr.length));
+      const [ax,ay,bx,by]=segsArr[segIdx]; const u=(life*segsArr.length)%1;
+      const px=lerp(ax,bx,u), py=lerp(ay,by,u);
+      ctx.fillStyle='rgba(174,231,255,'+(0.25+0.75*life)+')';
+      ctx.beginPath(); ctx.arc(px,py, 3.4,0,Math.PI*2); ctx.fill(); } }
+  /* tissue glow cells at branch ends */
+  if(treeA>0.6){ ctx.save(); ctx.globalAlpha=(treeA-0.6)/0.4;
+    paths.forEach(segsArr=>{ const e=segsArr[segsArr.length-1];
+      ctx.fillStyle='rgba(215,247,155,0.20)'; ctx.beginPath(); ctx.arc(e[2],e[3],16+4*Math.sin(t*3+e[2]),0,Math.PI*2); ctx.fill(); });
+    ctx.restore(); }
+  /* centipede blood: pale cells drifting in a vessel BELOW, untouched */
+  const vy=760;
+  ctx.strokeStyle='rgba(125,138,148,0.5)'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(x0,vy); ctx.lineTo(x1,vy); ctx.stroke();
+  for(let c=0;c<9;c++){ const px=x0 + ((c*137 + t*36)%(x1-x0));
+    ctx.fillStyle=COL.bloodPale; ctx.beginPath(); ctx.ellipse(px,vy,17,11,0,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='rgba(11,33,41,0.35)'; ctx.beginPath(); ctx.ellipse(px,vy,8,5,0,0,Math.PI*2); ctx.fill(); }
+  txt('ITS BLOOD CARRIES NO OXYGEN', 670, vy+64, 30, COL.bloodPale,'center',800,FONTD, ss(5.4,6.4,lt));
+  /* human side: lung + blood that loads up */
+  const hx=1520, hy=330;
+  ctx.save();
+  ctx.fillStyle='rgba(255,157,118,0.30)'; ctx.strokeStyle=COL.hum; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.ellipse(hx-78,hy+120,74,118,-0.14,0,Math.PI*2); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(hx+78,hy+120,74,118,0.14,0,Math.PI*2); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle=COL.air; ctx.lineWidth=9; ctx.beginPath(); ctx.moveTo(hx,hy-96); ctx.lineTo(hx,hy+58); ctx.stroke();
+  ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(hx,hy+58); ctx.lineTo(hx-66,hy+118); ctx.moveTo(hx,hy+58); ctx.lineTo(hx+66,hy+118); ctx.stroke();
+  /* inhalation particles */
+  for(let p=0;p<14;p++){ const u=((t*0.55 + p*0.37)%1);
+    const py=lerp(hy-96,hy+58,u); ctx.fillStyle='rgba(174,231,255,0.9)';
+    ctx.beginPath(); ctx.arc(hx+Math.sin(p*7)*7, py, 4,0,Math.PI*2); ctx.fill(); }
+  /* vessel with cells turning red */
+  const vy2=vy;
+  ctx.strokeStyle='rgba(255,90,90,0.45)'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(1330,vy2); ctx.lineTo(1790,vy2); ctx.stroke();
+  for(let c=0;c<6;c++){ const px=1330 + ((c*97 + t*52)%460);
+    const load = clamp((px-1400)/260,0,1);
+    ctx.fillStyle = load>0.5? COL.blood : '#c98a7d';
+    ctx.beginPath(); ctx.ellipse(px,vy2,17,11,0,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='rgba(11,33,41,0.30)'; ctx.beginPath(); ctx.ellipse(px,vy2,8,5,0,0,Math.PI*2); ctx.fill(); }
+  ctx.restore();
+  txt('LUNGS', hx, hy-140, 30, COL.hum,'center',800,FONTD);
+  txt('YOUR BLOOD CARRIES IT', 1560, vy+64, 30, COL.blood,'center',800,FONTD, ss(5.4,6.4,lt));
+}
+function drawS6(t){
+  const i=5, st=sStart(i), lt=t-st;
+  figLabel('FIG. 6 — HEART','A tube, not a pump','one vessel, pulsing the length of the body');
+  const pts = drawCentipede({x:760, y:470, len:1180, segs:21, t:t*0.5, move:0.18, legLen:56, headR:34, tailR:13, antLen:96});
+  /* dorsal heart tube + travelling pulse */
+  const tube = pts.map(p=>({x:p.x, y:p.y-p.r*0.72}));
+  ctx.save(); ctx.strokeStyle='rgba(255,90,90,0.55)'; ctx.lineWidth=7; ctx.lineCap='round';
+  ctx.beginPath(); tube.forEach((p,k)=> k? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y)); ctx.stroke();
+  const pu = ((lt*0.9)%1+1)%1;
+  const fi = pu*(tube.length-1), f0=Math.floor(fi), f1=Math.min(tube.length-1,f0+1);
+  const px=lerp(tube[f0].x,tube[f1].x,fi-f0), py=lerp(tube[f0].y,tube[f1].y,fi-f0);
+  ctx.fillStyle=COL.blood; ctx.shadowColor=COL.blood; ctx.shadowBlur=30;
+  ctx.beginPath(); ctx.arc(px,py,15,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle='rgba(255,90,90,0.35)'; ctx.lineWidth=4;
+  ctx.beginPath(); ctx.arc(px,py, 26+10*Math.sin(t*9),0,Math.PI*2); ctx.stroke();
+  ctx.restore();
+  txt('A HEART AS LONG AS THE BODY', 760, 700, 36, COL.blood,'center',900,FONTD, ss(0.7,1.5,lt));
+  /* human heart */
+  const hx=1560, hy=430, beat=1+0.10*Math.max(0,Math.sin(t*5.4))*Math.exp(-Math.pow((t*5.4)%(Math.PI*2)*0+ ((t*5.4)%6.283>3?0:0),2))*0 + 0.09*Math.pow(Math.max(0,Math.sin(t*5.4)),3);
+  ctx.save(); ctx.translate(hx,hy); ctx.scale(beat,beat);
+  ctx.fillStyle=COL.humDeep; ctx.shadowColor=COL.humDeep; ctx.shadowBlur=24;
+  ctx.beginPath(); ctx.moveTo(0,86);
+  ctx.bezierCurveTo(-118,-6,-74,-108,0,-44);
+  ctx.bezierCurveTo(74,-108,118,-6,0,86); ctx.fill(); ctx.restore();
+  ctx.strokeStyle='rgba(255,217,196,0.65)'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(hx,hy-40); ctx.lineTo(hx,hy+66); ctx.moveTo(hx-66,hy+6); ctx.lineTo(hx+66,hy+6); ctx.stroke();
+  const ch = Math.floor(t*2.7)%2;
+  txt(ch?'1 · 2':'3 · 4', hx, hy-138, 30, COL.humSoft,'center',800,FONTD, 0.85);
+  txt('ONE PUMP — 4 CHAMBERS', hx, 700, 32, COL.hum,'center',900,FONTD, ss(1.4,2.2,lt));
+}
+function drawS7(t){
+  const i=6, st=sStart(i), lt=t-st;
+  figLabel('FIG. 7 — SENSES','It feels its way','antennae first — the eyes barely matter');
+  /* centipede head, left */
+  const hx=520, hy=500, hr=170;
+  const g1=ctx.createRadialGradient(hx-50,hy-60,40,hx,hy,240);
+  g1.addColorStop(0,COL.cent); g1.addColorStop(1,COL.centDeep);
+  ctx.fillStyle=g1; ctx.beginPath(); ctx.ellipse(hx,hy,hr*1.06,hr*0.92,0,0,Math.PI*2); ctx.fill();
+  /* ocelli dimming */
+  const dim = 1-ss(1.2,3.2,lt)*0.85;
+  [[-70,-60],[-24,-82],[26,-78],[74,-54]].forEach(([dx,dy])=>{ ctx.fillStyle='#0e2c1c';
+    ctx.beginPath(); ctx.arc(hx+dx,hy+dy,13,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='rgba(215,247,155,'+(0.75*dim)+')'; ctx.beginPath(); ctx.arc(hx+dx-3,hy+dy-3,4.5,0,Math.PI*2); ctx.fill(); });
+  txt('OCELLI — SIMPLE EYESPOTS', hx, hy+hr+58, 28, COL.dim,'center',700,FONTD, ss(1.0,1.8,lt));
+  /* antennae sweeping with touch rings */
+  for(const s of [-1,1]){
+    const sweepA = Math.sin(t*1.15 + (s>0?0.9:0))*0.5;
+    const bx=hx-140, by=hy+s*78;
+    const tipx=bx-330, tipy=by+s*130+Math.sin(t*1.15+(s>0?0.9:0))*66;
+    ctx.strokeStyle=COL.centDeep; ctx.lineWidth=10; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(bx,by);
+    ctx.quadraticCurveTo(bx-180, by+s*120, tipx, tipy); ctx.stroke();
+    ctx.fillStyle=COL.centGlow; ctx.beginPath(); ctx.arc(tipx,tipy,8,0,Math.PI*2); ctx.fill();
+    for(let rI=0;rI<2;rI++){ const rp=((t*0.7 + rI*0.5 + (s>0?0.25:0))%1);
+      ctx.strokeStyle='rgba(215,247,155,'+(0.5*(1-rp))+')'; ctx.lineWidth=3;
+      ctx.beginPath(); ctx.arc(tipx,tipy, 12+rp*92, 0, Math.PI*2); ctx.stroke(); }
+  }
+  txt('ANTENNAE DO THE SENSING', hx-40, hy-hr-58, 32, COL.cent,'center',900,FONTD, ss(2.2,3.0,lt));
+  /* human head profile with vision cone, right */
+  const ex=1500, ey=470;
+  ctx.save();
+  const sweep=Math.sin(t*0.8)*0.14;
+  ctx.translate(ex,ey); ctx.rotate(sweep*0.4);
+  const grad=ctx.createLinearGradient(60,0,560,0);
+  grad.addColorStop(0,'rgba(255,209,102,0.34)'); grad.addColorStop(1,'rgba(255,209,102,0)');
+  ctx.fillStyle=grad; ctx.beginPath(); ctx.moveTo(56,-8); ctx.lineTo(560,-150); ctx.lineTo(560,150); ctx.closePath(); ctx.fill();
+  ctx.restore();
+  ctx.fillStyle=COL.hum; ctx.beginPath(); ctx.arc(ex,ey,120,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle=COL.hum; rr(ex-96,ey+96,150,150,52); ctx.fill();
+  ctx.fillStyle='#fff'; ctx.beginPath(); ctx.ellipse(ex+64,ey-16,26,20,0,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#20303a'; ctx.beginPath(); ctx.arc(ex+72,ey-16,11,0,Math.PI*2); ctx.fill();
+  txt('EYES FIRST', ex+120, ey-190, 32, COL.hum,'center',900,FONTD, ss(3.4,4.2,lt));
+  vsTag(960, 985, 'NAVIGATES BY TOUCH', 'NAVIGATES BY SIGHT', ss(5.6,6.6,lt));
+}
+function drawS8(t){
+  const i=7, st=sStart(i), lt=t-st, dur=sDur(i);
+  const endCard = ss(dur-2.5, dur-1.9, lt);
+  ctx.save(); ctx.globalAlpha=1-endCard;
+  figLabel('FIG. 8 — TWO PLANS','Two engineering philosophies','same problem, opposite solutions');
+  ctx.strokeStyle=COL.panelEdge; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(W/2,190); ctx.lineTo(W/2,880); ctx.stroke();
+  /* left: centipede assembles module by module */
+  const n=12, asm=ss(0.5,4.6,lt);
+  const litN=Math.floor(asm*n);
+  drawCentipede({x:480, y:470, len:760, segs:15, t:t*0.5, move:0.15, legLen:46, headR:27, tailR:11,
+    segGlow:(k)=> k<litN? 0.55 : -1, alpha:1});
+  /* hide un-assembled tail with bg block */
+  if(litN<15){ const frac=litN/15; ctx.fillStyle=COL.bg;
+    ctx.fillRect(480-380+frac*760, 300, 760*(1-frac)+60, 380); }
+  /* right: human assembles from blocks */
+  const blocks=[['BRAIN',0.55],['SENSES',1.25],['LUNGS + BLOOD',1.95],['ONE PUMP',2.65],['SPECIALISED LIMBS',3.35]];
+  blocks.forEach(([L,bt],k)=>{ const p=spring(clamp((lt-bt)/0.6,0,1.2)); if(p<=0.01) return;
+    const bw=430, bh=76, bx=1440-bw/2, by=300+k*104;
+    ctx.save(); ctx.globalAlpha=p; ctx.translate(1440, by+bh/2); ctx.scale(p,p); ctx.translate(-1440,-(by+bh/2));
+    ctx.fillStyle='#17323c'; rr(bx,by,bw,bh,14); ctx.fill();
+    ctx.strokeStyle=COL.hum; ctx.lineWidth=3; ctx.stroke();
+    txt(L, 1440, by+bh/2+1, 30, COL.humSoft,'center',800,FONTD);
+    ctx.restore(); });
+  /* stamps */
+  const tS1=wordTime(i,'centralise')-st, tS2=wordTime(i,'Theirs')-st;
+  if(lt>tS2) stamp('REPEAT THE MODULE', 480, 800, 40, COL.cent, -0.05, spring(clamp((lt-tS2)/0.45,0,1.2)));
+  if(lt>tS1) stamp('CENTRALISE & SPECIALISE', 1440, 800, 40, COL.hum, 0.05, spring(clamp((lt-tS1)/0.45,0,1.2)));
+  const tEnd=wordTime(i,'Neither')-st;
+  if(lt>tEnd) txt('Neither is a draft of the other.', W/2, 950, 44, COL.ink,'center',800,FONT, ss(tEnd,tEnd+0.6,lt));
+  ctx.restore();
+  /* end card */
+  if(endCard>0){ ctx.save(); ctx.globalAlpha=endCard;
+    ctx.fillStyle=COL.bg; ctx.fillRect(0,0,W,H);
+    txt('WHY A CENTIPEDE IS NOT', W/2, 428, 74, COL.ink,'center',900,FONTD);
+    txt('A SMALL HUMAN', W/2, 512, 74, COL.cent,'center',900,FONTD);
+    ctx.strokeStyle=COL.gold; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.moveTo(W/2-330,586); ctx.lineTo(W/2+330,586); ctx.stroke();
+    txt('filed under:  DIFFERENT PLANS', W/2, 648, 32, COL.gold,'center',700,FONTD,1,3);
+    ctx.restore(); }
+}
+/* ================= DISPATCH ================= */
+const SCENES=[drawS1,drawS2,drawS3,drawS4,drawS5,drawS6,drawS7,drawS8];
+function seek(t){
+  t=clamp(t,0,DUR);
+  ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over';
+  const bg=ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,COL.bg2); bg.addColorStop(1,COL.bg);
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  for(let i=0;i<8;i++){ const a=sceneAlpha(i,t); if(a<=0.003) continue;
+    ctx.save(); ctx.globalAlpha=a; SCENES[i](t); ctx.restore(); }
+  drawCaption(t);
+  vignette();
+}
+window.seek=seek;
+window.DUR=DUR;
+seek(0);
+window.__ready=true;
+</script>
+</body></html>
