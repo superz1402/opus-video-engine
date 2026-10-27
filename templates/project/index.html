@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Opus Video Engine — project skeleton.
+     Contract (engine/ENGINE.md): expose window.__seek(tSeconds) that draws
+     the frame for time t as a PURE function of t. No CSS transitions, no
+     timers, no state between calls. Replace this demo with your scenes. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Project skeleton</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #0d2226; overflow: hidden; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="stage" width="1920" height="1080"></canvas>
+<script>
+"use strict";
+window.__duration = 6.0; // seconds — set from voice timings when locked
+const cv = document.getElementById("stage");
+const x = cv.getContext("2d");
+
+// closed-form spring (twoclipping pattern): pure function of t
+function spring(t, t0, dur) {
+  const u = Math.min(Math.max((t - t0) / dur, 0), 1);
+  return 1 - Math.exp(-6 * u) * Math.cos(8 * u) * (1 - u) - (1 - u) * Math.exp(-6 * u);
+}
+function ease(u) { return u < 0 ? 0 : u > 1 ? 1 : u * u * (3 - 2 * u); }
+
+window.__seek = function (t) {
+  x.fillStyle = "#0d2226";
+  x.fillRect(0, 0, 1920, 1080);
+  // a bar that draws itself on — the demo's one formal idea
+  const p = ease((t - 0.5) / 3.5);
+  x.fillStyle = "#9fd356";
+  x.fillRect(260, 500, 1400 * p, 26);
+  x.fillStyle = "#f5eeda";
+  x.font = "700 84px Oswald, 'Archivo', sans-serif";
+  x.textAlign = "center";
+  const s = spring(t, 0.2, 0.9);
+  x.save();
+  x.translate(960, 400);
+  x.scale(s, s);
+  x.globalAlpha = Math.min(1, s + 0.2);
+  x.fillText("SEEK(t) — PURE FUNCTION OF TIME", 0, 0);
+  x.restore();
+  window.__READY = true;
+};
+window.__seek(0);
+</script>
+</body>
+</html>
