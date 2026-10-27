@@ -1,0 +1,30 @@
+{
+ "workflow": "opus-render",
+ "run_id": "40475114411",
+ "run_number": "3",
+ "job_status": "success",
+ "sha": "3aefbc79217a96f7a9fed71da98a5959d535e0c4",
+ "project": "centipede-vs-human",
+ "release_tag": "video-centipede-v1.0.0",
+ "probe": {
+  "programs": [],
+  "streams": [
+   {
+    "codec_name": "h264",
+    "width": 1920,
+    "height": 1080,
+    "r_frame_rate": "30/1"
+   },
+   {
+    "codec_name": "aac",
+    "r_frame_rate": "0/0"
+   }
+  ],
+  "format": {
+   "duration": "98.266667",
+   "size": "19098950",
+   "bit_rate": "1554867"
+  }
+ },
+ "note": "master + review encode live on the Release; full artifact on the run"
+}
