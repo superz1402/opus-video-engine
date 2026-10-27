@@ -56,6 +56,14 @@ Outputs next to the input: `<stem>.audio.wav` (24 kHz mono PCM),
 (per-block WAVs — synthesis is resumable; rerunning skips finished blocks
 unless `--force`). Needs clean egress (run on Actions or an open network).
 
+**Block convention (load-bearing):** blocks are **blank-line-separated
+paragraphs**, and for scene-keyed projects there must be **exactly one
+block per scene** — `bake_timings.py` maps block *i* → scene *i*, and
+`render.yml` hard-fails when the baked scene count disagrees with
+`project.json`'s `"scenes"`. A file whose scenes are separated by single
+newlines is ONE block, and sentence-packing will silently regroup it —
+the centipede project's first CI run caught exactly this.
+
 ### `engine/bake_timings.py --template index.template.html --words <stem>.words.json --timing <stem>.timing.json --out index.html`
 
 For projects whose animation events are keyed to word timings: the HTML
