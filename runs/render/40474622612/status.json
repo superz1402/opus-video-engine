@@ -1,0 +1,11 @@
+{
+ "workflow": "opus-render",
+ "run_id": "40474622612",
+ "run_number": "2",
+ "job_status": "failure",
+ "sha": "69487b0f90a9106f2c8c30f3cc0aed2ca739a61f",
+ "project": "centipede-vs-human",
+ "release_tag": "video-centipede-v1.0.0",
+ "probe": {},
+ "note": "master + review encode live on the Release; full artifact on the run"
+}
