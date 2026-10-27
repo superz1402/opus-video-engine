@@ -48,8 +48,22 @@ Key patterns absorbed from the archive, by creator:
 ```
 P0 Brief        projects/<slug>/project.json + STORYBOARD.md drafted
 P1 Storyboard   STORYBOARD.md locked: per scene — time, picture, on-screen
-                text, narration, transition, ONE formal idea. Facts listed
-                with sources at the foot of the storyboard.
+                text, narration, transition, ONE formal idea, PLUS the
+                Script Standard fields: BUT/THEREFORE joint from the
+                previous scene, question-in → answer → question-out,
+                so-what stake. Facts listed with sources at the foot of
+                the storyboard.
+P1.5 Script     The narration passes the Script Standard
+  gate          (docs/script-standard.md) BEFORE any voice work:
+                (a) the retention rubric ≥16/20, no zero dimension, scored
+                by an INDEPENDENT scorer — the writer never certifies
+                their own script (a self-scored total caps at 15/20);
+                (b) the mechanical panel — engine/script_gate.py
+                (T3/T5/T6/T9/T10/T11 + hook and pace heuristics), run in
+                CI by .github/workflows/script-gate.yml; (c) scorer
+                checks T1/T2/T4/T7/T8/T12 recorded in the project's
+                score sheet. Any FAIL = rewrite, not produce. The gate
+                report is filed in the project (script-gate-report.*).
 P2 Voice        voice-input.txt (VOICE:/RATE: directives + narration blocks)
                 → engine/voice_tts.py (local clean network or Actions
                 voice.yml) → <stem>.audio.wav + .words.json + .timing.json
@@ -72,11 +86,12 @@ P7 Release      GitHub Release (tag video-<slug>-v<X.Y.Z>) with master +
                 not "done" until its Release exists.
 ```
 
-On GitHub Actions, P2 runs as `voice.yml` and P3–P7 as `render.yml`
-(the render job synthesises voice in-job unless given a prior voice run
-id). **Actions is the production floor for internet-bound stages** (Edge
-TTS needs clean egress); design, storyboarding and gates are agent work
-and can happen anywhere.
+On GitHub Actions, P1.5's mechanical panel runs as `script-gate.yml`
+(on script pushes + dispatch), P2 runs as `voice.yml` and P3–P7 as
+`render.yml` (the render job synthesises voice in-job unless given a
+prior voice run id). **Actions is the production floor for internet-bound
+stages** (Edge TTS needs clean egress); design, storyboarding and gates
+are agent work and can happen anywhere.
 
 ## Hard rules — breaking any of these is a failed run
 
@@ -111,6 +126,13 @@ and can happen anywhere.
 10. **Human-approval gate.** Nothing publishes to any platform before the
     owner approves the exact final file. GitHub Releases in this repo are
     the review shelf (pre-release by default), not public publishing.
+11. **Script gate before voice.** No script reaches P2 without a passing
+    P1.5 gate on file: the Script Standard (docs/script-standard.md) is
+    law, the mechanical panel (engine/script_gate.py) must report no hard
+    FAIL, and the rubric must be certified by an independent scorer —
+    self-scored totals cap at 15/20 and can never pass a script alone.
+    A flat, unmarked, question-free script is a failed script, however
+    accurate its facts are.
 
 ## Environment notes (proven)
 
