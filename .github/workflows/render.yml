@@ -1,13 +1,17 @@
 name: opus-render
 
-# Opus Video Engine — full video run (P2 voice in-job → P3 capture →
-# P5 assemble → P6 checks → P7 Release + run record). See AGENTS.md.
+# Opus Video Engine — full video run (P2 voice in-job or reused → timings
+# baked into the project HTML → P3 capture → P5 assemble → P6 checks →
+# P7 Release + run record). See AGENTS.md.
 #
-# Voice: by default the narration is synthesised in this job with
-# engine/voice_tts.py. Set voice_run_id to reuse a prior opus-voice run's
-# artifact (voice-<project>) instead.
-# Release: master + 720p review encode are attached to the Release named
-# by release_tag (default video-centipede-v1.0.0).
+# Timings bake: if the project ships index.template.html (animation events
+# keyed to word timings), the freshly synthesised run's measured timings
+# are baked into build/<project>/index.html with engine/bake_timings.py,
+# so the CI voice and the animation are locked to EACH OTHER — never to
+# another machine's synthesis.
+# Voice: synthesised in-job by default; set voice_run_id to reuse a prior
+# opus-voice run's artifact (voice-<project>) instead.
+# Release: master + 720p review encode attached to release_tag.
 
 on:
   workflow_dispatch:
@@ -60,8 +64,12 @@ jobs:
           PROJECT: ${{ inputs.project }}
         run: |
           DIR="projects/$PROJECT"
-          if [ ! -f "$DIR/index.html" ] || [ ! -f "$DIR/voice-input.txt" ]; then
-            echo "::error::Project incomplete: $DIR needs index.html and voice-input.txt"
+          if [ ! -f "$DIR/voice-input.txt" ]; then
+            echo "::error::Project incomplete: $DIR has no voice-input.txt"
+            exit 1
+          fi
+          if [ ! -f "$DIR/index.html" ] && [ ! -f "$DIR/index.template.html" ]; then
+            echo "::error::Project incomplete: $DIR needs index.html or index.template.html"
             exit 1
           fi
           python3 - "$DIR/project.json" >> "$GITHUB_OUTPUT" <<'PY'
@@ -94,16 +102,36 @@ jobs:
           DIR="projects/${{ inputs.project }}"
           ls -la "$DIR"/voice-input.audio.wav "$DIR"/voice-input.words.json "$DIR"/voice-input.timing.json
 
+      - name: Bake timings into HTML (when the project ships a template)
+        id: bake
+        shell: bash
+        env:
+          PROJECT: ${{ inputs.project }}
+        run: |
+          DIR="projects/$PROJECT"
+          if [ -f "$DIR/index.template.html" ]; then
+            python engine/bake_timings.py \
+              --template "$DIR/index.template.html" \
+              --words "$DIR/voice-input.words.json" \
+              --timing "$DIR/voice-input.timing.json" \
+              --out "build/$PROJECT/index.html"
+            echo "html=build/$PROJECT/index.html" >> "$GITHUB_OUTPUT"
+          else
+            echo "html=$DIR/index.html" >> "$GITHUB_OUTPUT"
+          fi
+          echo "capture source: $(grep -o 'html=.*' $GITHUB_OUTPUT || true)"
+
       - name: Compute capture duration fallback
         id: dur
         shell: bash
         env:
           PROJECT: ${{ inputs.project }}
+          HTML: ${{ steps.bake.outputs.html }}
         run: |
           python3 - >> "$GITHUB_OUTPUT" <<'PY'
-          import json, os, re
-          proj = os.environ["PROJECT"]
-          html = open(f"projects/{proj}/index.html", encoding="utf-8").read()
+          import json, os
+          proj, html_path = os.environ["PROJECT"], os.environ["HTML"]
+          html = open(html_path, encoding="utf-8").read()
           dur = ""
           if "__duration" not in html:
               t = json.load(open(f"projects/{proj}/voice-input.timing.json"))
@@ -118,11 +146,12 @@ jobs:
         shell: bash
         env:
           DUR: ${{ steps.dur.outputs.dur }}
+          HTML: ${{ steps.bake.outputs.html }}
         run: |
           ARGS=""
           if [ -n "$DUR" ]; then ARGS="--duration $DUR"; fi
           python engine/capture.py \
-            --html "projects/${{ inputs.project }}/index.html" \
+            --html "$HTML" \
             --out "build/${{ inputs.project }}/frames" \
             --fps "${{ steps.proj.outputs.fps }}" \
             --width "${{ steps.proj.outputs.width }}" \
@@ -179,7 +208,7 @@ jobs:
           PRE: ${{ inputs.prerelease }}
         shell: bash
         run: |
-          NOTES="Opus Video Engine render of projects/$PROJECT (run ${{ github.run_id }}): deterministic seek(t) capture at ${{ steps.proj.outputs.fps }} fps, Edge TTS narration from the project's voice-input directives, -14 LUFS mix. Assets: 1080p master + 720p review encode. QA evidence (probe + contact sheet) is on the workflow run artifact and in runs/render/${{ github.run_id }}/."
+          NOTES="Opus Video Engine render of projects/$PROJECT (run ${{ github.run_id }}): deterministic seek(t) capture at ${{ steps.proj.outputs.fps }} fps, Edge TTS narration from the project's voice-input directives with timings baked into the animation, -14 LUFS mix. Assets: 1080p master + 720p review encode. QA evidence (probe + contact sheet) is on the workflow run artifact and in runs/render/${{ github.run_id }}/."
           PRE_FLAG=""
           if [ "$PRE" = "true" ]; then PRE_FLAG="--prerelease"; fi
           if gh release view "$TAG" >/dev/null 2>&1; then
