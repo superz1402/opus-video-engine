@@ -1,0 +1,13 @@
+# media & build output never live in git (videos → Releases, audio → artifacts)
+*.wav
+*.mp3
+*.mp4
+*.jpg
+!templates/**/*.jpg
+build/
+out/
+__pycache__/
+*.pyc
+.env
+keys.env
+node_modules/
