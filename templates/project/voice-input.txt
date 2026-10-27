@@ -1,0 +1,7 @@
+VOICE: en-GB-SoniaNeural
+RATE: -3%
+First narration block here. Blocks are separated by blank lines; each block
+is synthesised separately and joined with a fixed breath gap, and its
+WordBoundary timings drive the animation events for its scene.
+
+Second block here.
