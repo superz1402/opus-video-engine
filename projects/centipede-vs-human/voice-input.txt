@@ -1,10 +1,18 @@
 VOICE: en-GB-SoniaNeural
 RATE: -3%
+
 A centipede is not a tiny human with more legs. It's a different body plan — and it starts with the legs. Fifteen pairs. Twenty-one. Sometimes over a hundred. Always odd. You have one pair.
+
 Its trunk is one module repeated: segment, legs, segment, legs — more added as it grows. Yours is the opposite idea: a few specialised parts, each built for one job.
+
 Even its weapons are legs. The venom fangs behind its head are the first pair of legs, remodelled into claws. No human arm ever did that.
+
 No single brain runs the show. A centipede's nerve cord is a chain of small clusters — one per segment — so legs keep stepping on local orders. You run everything from one brain, down one cord.
+
 It has no lungs. Air enters through pores along its sides, into branching tubes that deliver oxygen straight to the tissues — its blood carries none. Your lungs and blood do both jobs together.
+
 Its heart is a tube as long as its body, pulsing in waves. Yours is one fist-sized pump with four chambers.
+
 Many centipedes are nearly blind — simple eyespots, or none at all. They read the world through their antennae. You navigate by sight; it navigates by touch.
+
 Two engineering philosophies. Ours: centralise and specialise. Theirs: repeat one simple module, and let every copy do everything. Neither is a draft of the other.
