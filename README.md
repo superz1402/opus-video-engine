@@ -35,6 +35,7 @@ the Actions/Release/run-record conventions proven on
 AGENTS.md                  the operating contract — READ THIS FIRST
 engine/
   voice_tts.py             Edge TTS narration (VOICE:/RATE: directives, WordBoundary timings)
+  bake_timings.py          bake a measured run's timings into a project's index.template.html
   capture.py               Playwright frame renderer for a project HTML (seek(t) → JPEG frames)
   assemble.py              frames + narration (+ optional music) → master + 720p review, −14 LUFS
   contact_sheet.py         contact sheet from a rendered video (QA evidence)
