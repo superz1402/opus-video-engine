@@ -56,6 +56,16 @@ Outputs next to the input: `<stem>.audio.wav` (24 kHz mono PCM),
 (per-block WAVs — synthesis is resumable; rerunning skips finished blocks
 unless `--force`). Needs clean egress (run on Actions or an open network).
 
+### `engine/bake_timings.py --template index.template.html --words <stem>.words.json --timing <stem>.timing.json --out index.html`
+
+For projects whose animation events are keyed to word timings: the HTML
+ships as a template with `/*__TIMINGS__*/` and `/*__SENTENCES__*/`
+placeholders, and this tool bakes a **measured** synthesis run's timings
+into it (block *i* of the timing file == scene *i*). Always bake from
+the same run whose audio will be mixed — that is what locks voice and
+picture to each other on any machine. `render.yml` does this
+automatically when a project ships `index.template.html`.
+
 ### `engine/capture.py --html index.html --out frames/ [--duration S] [--fps 30] [--width 1920] [--height 1080]`
 
 Playwright frame renderer. Duration resolution order: `--duration` →
