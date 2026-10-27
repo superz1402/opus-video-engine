@@ -1,0 +1,157 @@
+name: opus-voice
+
+# Opus Video Engine — P2 Voice stage. Runs engine/voice_tts.py on a
+# clean-network runner: Edge TTS, VOICE:/RATE: directives in the input
+# file, WordBoundary timings. Outputs: artifact voice-<project> + run
+# record in runs/voice/<run-id>/. See AGENTS.md.
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Project slug under projects/"
+        required: true
+        default: "centipede-vs-human"
+      script_path:
+        description: "Script file to voice (blank = projects/<project>/voice-input.txt)"
+        required: false
+        default: ""
+      voice:
+        description: "Edge TTS voice (file VOICE: directive wins)"
+        required: false
+        default: "en-GB-SoniaNeural"
+      rate:
+        description: "Prosody rate (file RATE: directive wins)"
+        required: false
+        default: "-3%"
+  push:
+    paths:
+      - "projects/**/voice-input.txt"
+
+permissions:
+  contents: write # commit the run record back under runs/
+
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ffmpeg + edge-tts
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install --quiet edge-tts
+
+      - name: Resolve script path
+        id: resolve
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            SCRIPT="${{ inputs.script_path }}"
+            if [ -z "$SCRIPT" ]; then
+              SCRIPT="projects/${{ inputs.project }}/voice-input.txt"
+            fi
+          else
+            SCRIPT="$(git diff --name-only HEAD~1 HEAD -- 'projects/**/voice-input.txt' | head -n 1)"
+            SCRIPT="${SCRIPT:-projects/centipede-vs-human/voice-input.txt}"
+          fi
+          if [ ! -f "$SCRIPT" ]; then
+            echo "::error::Script not found: $SCRIPT"
+            exit 1
+          fi
+          DIR="$(dirname "$SCRIPT")"
+          STEM="$(basename "$SCRIPT" | sed 's/\.[^.]*$//')"
+          PROJ="$(basename "$DIR")"
+          echo "script=$SCRIPT" >> "$GITHUB_OUTPUT"
+          echo "dir=$DIR"       >> "$GITHUB_OUTPUT"
+          echo "stem=$STEM"     >> "$GITHUB_OUTPUT"
+          echo "project=$PROJ"  >> "$GITHUB_OUTPUT"
+          echo "Voicing $SCRIPT (project: $PROJ)"
+
+      - name: Synthesize narration
+        run: |
+          python engine/voice_tts.py "${{ steps.resolve.outputs.script }}" \
+            --voice="${{ inputs.voice || 'en-GB-SoniaNeural' }}" \
+            --rate="${{ inputs.rate || '-3%' }}"
+
+      - name: Upload voice artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: voice-${{ steps.resolve.outputs.project }}
+          path: |
+            ${{ steps.resolve.outputs.dir }}/${{ steps.resolve.outputs.stem }}.audio.wav
+            ${{ steps.resolve.outputs.dir }}/${{ steps.resolve.outputs.stem }}.words.json
+            ${{ steps.resolve.outputs.dir }}/${{ steps.resolve.outputs.stem }}.timing.json
+          if-no-files-found: error
+          retention-days: 90
+
+      # Run record (AGENTS.md): words/timing + status committed to
+      # runs/voice/<run-id>/ so results are readable through git.
+      - name: Commit run record
+        if: always()
+        shell: bash
+        env:
+          DIR: ${{ steps.resolve.outputs.dir }}
+          STEM: ${{ steps.resolve.outputs.stem }}
+          PROJECT: ${{ steps.resolve.outputs.project }}
+          SCRIPT: ${{ steps.resolve.outputs.script }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          REC="runs/voice/${{ github.run_id }}"
+          mkdir -p "$REC"
+          for f in "$STEM.words.json" "$STEM.timing.json"; do
+            [ -f "$DIR/$f" ] && cp "$DIR/$f" "$REC/$f" || true
+          done
+          REC="$REC" python3 - <<'PY'
+          import json, os
+          rec = os.environ["REC"]
+          words, blocks, dur = None, None, None
+          wj = os.path.join(rec, os.environ["STEM"] + ".words.json")
+          tj = os.path.join(rec, os.environ["STEM"] + ".timing.json")
+          if os.path.exists(wj):
+              words = len(json.load(open(wj)))
+          if os.path.exists(tj):
+              t = json.load(open(tj))
+              blocks = len(t)
+              dur = round(sum(v["dur"] for v in t.values()), 2)
+          status = {
+              "workflow": "opus-voice",
+              "run_id": os.environ.get("GITHUB_RUN_ID"),
+              "run_number": os.environ.get("GITHUB_RUN_NUMBER"),
+              "job_status": os.environ.get("JOB_STATUS"),
+              "sha": os.environ.get("GITHUB_SHA"),
+              "script": os.environ.get("SCRIPT"),
+              "project": os.environ.get("PROJECT"),
+              "timed_words": words,
+              "blocks": blocks,
+              "speech_seconds_blocks_only": dur,
+              "audio_artifact": "voice-" + (os.environ.get("PROJECT") or ""),
+              "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract",
+          }
+          json.dump(status, open(os.path.join(rec, "status.json"), "w"), indent=1)
+          print(json.dumps(status))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$REC"
+          if git diff --cached --quiet; then
+            echo "nothing to record"
+          else
+            git commit -m "runs: opus-voice ${{ github.run_id }} (${JOB_STATUS})"
+            for attempt in 1 2 3; do
+              git fetch origin "${{ github.ref_name }}"
+              git rebase "origin/${{ github.ref_name }}" || git rebase --abort
+              if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
+              echo "push rejected (attempt $attempt) - remote moved; rebasing and retrying"
+              sleep 5
+            done
+          fi
