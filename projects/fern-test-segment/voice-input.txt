@@ -1,5 +1,5 @@
 VOICE: en-GB-SoniaNeural
-RATE: -3%
+RATE: -27%
 
 A cockroach is walking through dry leaves — not where it wants to go, but where it is led, by one of its own antennae, cut short. Holding what is left of it is a wasp, twenty-two millimetres, metallic green, walking her catch home to a burrow, to be eaten alive, slowly, over about eight days, by a larva that has not hatched yet. The cockroach is about twice her length.
 
