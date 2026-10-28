@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "40667034725",
+ "run_number": "7",
+ "job_status": "success",
+ "sha": "d0c6c0bada8ce959437dda88e581f391aa017f90",
+ "script": "projects/fern-test-segment-v2/voice-input.txt",
+ "project": "fern-test-segment-v2",
+ "timed_words": 262,
+ "blocks": 4,
+ "speech_seconds_blocks_only": 117.73,
+ "audio_artifact": "voice-fern-test-segment-v2",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
