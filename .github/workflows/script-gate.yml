@@ -1,0 +1,77 @@
+name: opus-script-gate
+
+# Opus Video Engine — P1.5 mechanical script gate. Runs
+# engine/script_gate.py (the measurable panel of docs/script-standard.md:
+# T3/T5/T6/T9/T10/T11 + hook and pace heuristics) on a project's script
+# and publishes the report as an artifact. A FAIL means the script is
+# rewritten, not voiced (AGENTS.md hard rule 11). The scored checks
+# (T1/T2/T4/T7/T8/T12 + rubric) stay with the independent scorer — this
+# workflow never certifies them.
+
+on:
+  workflow_dispatch:
+    inputs:
+      script_path:
+        description: "Script / voice-input file to gate"
+        required: false
+        default: "projects/centipede-vs-human/voice-input.txt"
+      target_seconds:
+        description: "Target runtime seconds (blank = pace reported, not enforced)"
+        required: false
+        default: ""
+  push:
+    paths:
+      - "projects/**/voice-input.txt"
+      - "engine/script_gate.py"
+      - "docs/script-standard.md"
+      - ".github/workflows/script-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run the script gate
+        env:
+          SCRIPT_PATH: ${{ inputs.script_path || 'projects/centipede-vs-human/voice-input.txt' }}
+          TARGET_SECONDS: ${{ inputs.target_seconds }}
+        run: |
+          args=()
+          if [ -n "$TARGET_SECONDS" ]; then
+            args+=(--target-seconds "$TARGET_SECONDS")
+          fi
+          set +e
+          python3 engine/script_gate.py "$SCRIPT_PATH" "${args[@]}" \
+            --report script-gate-report.txt \
+            --json script-gate-report.json > gate-output.txt 2>&1
+          code=$?
+          cat gate-output.txt
+          {
+            echo "## Script gate — $SCRIPT_PATH"
+            echo '```'
+            cat gate-output.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "gate exit code: $code (1 = hard FAIL = script rewritten, not voiced)"
+          exit $code
+
+      - name: Upload gate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: script-gate-report
+          path: |
+            script-gate-report.txt
+            script-gate-report.json
+          if-no-files-found: warn
