@@ -1,5 +1,5 @@
 VOICE: en-US-AndrewMultilingualNeural
-RATE: -24%
+RATE: -32%
 
 In a safe house in Virginia, a young Ukrainian hacker is typing.
 
