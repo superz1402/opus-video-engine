@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "40836198243",
+ "run_number": "11",
+ "job_status": "success",
+ "sha": "95f14e0a4f993fd777e65efc96e5e37a2ee0faff",
+ "script": "projects/popov-informant/voice-input.txt",
+ "project": "popov-informant",
+ "timed_words": 215,
+ "blocks": 16,
+ "speech_seconds_blocks_only": 95.3,
+ "audio_artifact": "voice-popov-informant",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
