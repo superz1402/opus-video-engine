@@ -1,0 +1,9 @@
+VOICE: en-US-AndrewMultilingualNeural
+RATE: -3%
+AUDIO-TO-RUNS: yes
+
+Hey — meet the bot.
+
+Sixteen free tools built his studio.
+
+This film? Drawn, voiced, scored, checked — all by code.
