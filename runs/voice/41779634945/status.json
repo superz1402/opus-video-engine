@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "41779634945",
+ "run_number": "15",
+ "job_status": "success",
+ "sha": "c52dcb4bef0d6ed014c03ea02547eb32c5f92f61",
+ "script": "projects/motion-studio-sample/voice-input.txt",
+ "project": "motion-studio-sample",
+ "timed_words": 19,
+ "blocks": 3,
+ "speech_seconds_blocks_only": 8.09,
+ "audio_artifact": "voice-motion-studio-sample",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
