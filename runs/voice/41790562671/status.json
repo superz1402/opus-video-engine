@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "41790562671",
+ "run_number": "17",
+ "job_status": "success",
+ "sha": "f5244f286f2b523e30310da3ad7133fd0a100ef7",
+ "script": "projects/night-002-grey/voice-input.txt",
+ "project": "night-002-grey",
+ "timed_words": 158,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 69.1,
+ "audio_artifact": "voice-night-002-grey",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
