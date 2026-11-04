@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "41812040713",
+ "run_number": "18",
+ "job_status": "success",
+ "sha": "927da7294179c60c7ee31330084f9256189681ca",
+ "script": "projects/night-003-jungle/voice-input.txt",
+ "project": "night-003-jungle",
+ "timed_words": 191,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 75.99,
+ "audio_artifact": "voice-night-003-jungle",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
