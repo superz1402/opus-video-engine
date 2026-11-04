@@ -1,5 +1,5 @@
 VOICE: en-US-AndrewMultilingualNeural
-RATE: -3%
+RATE: -10%
 AUDIO-TO-RUNS: yes
 
 Hey — meet the bot.
