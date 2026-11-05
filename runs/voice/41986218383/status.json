@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "41986218383",
+ "run_number": "44",
+ "job_status": "success",
+ "sha": "bede4473652fa478f3ab1de4e3c99a2472dbe000",
+ "script": "projects/night-004-dog/voice-input-neerja-expressive.txt",
+ "project": "night-004-dog",
+ "timed_words": 207,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 94.61,
+ "audio_artifact": "voice-night-004-dog",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
