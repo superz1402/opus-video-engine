@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "41957232793",
+ "run_number": "29",
+ "job_status": "success",
+ "sha": "a5f3ba17b4a6ed8a7766e431614c0381ffdf3688",
+ "script": "projects/night-001-vetala/voice-input-hinglish.txt",
+ "project": "night-001-vetala",
+ "timed_words": 111,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 53.36,
+ "audio_artifact": "voice-night-001-vetala",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
