@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "41986173617",
+ "run_number": "39",
+ "job_status": "success",
+ "sha": "67aa0a22d5e18eda44291a7b88f66093ab70826b",
+ "script": "projects/night-002-grey/voice-input-hinglish-madhur.txt",
+ "project": "night-002-grey",
+ "timed_words": 140,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 63.65,
+ "audio_artifact": "voice-night-002-grey",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
