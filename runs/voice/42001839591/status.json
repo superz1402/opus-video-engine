@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42001839591",
+ "run_number": "53",
+ "job_status": "success",
+ "sha": "e314a9a14f20b8ed4e47a8b5884c3e56de94796c",
+ "script": "projects/night-004-dog/voice-input.txt",
+ "project": "night-004-dog",
+ "timed_words": 174,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 76.32,
+ "audio_artifact": "voice-night-004-dog",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
