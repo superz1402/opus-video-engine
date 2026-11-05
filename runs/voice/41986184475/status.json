@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "41986184475",
+ "run_number": "40",
+ "job_status": "success",
+ "sha": "e48478b51172aec571020daf6e3ae35e995c164c",
+ "script": "projects/night-003-jungle/voice-input-neerja.txt",
+ "project": "night-003-jungle",
+ "timed_words": 183,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 81.11,
+ "audio_artifact": "voice-night-003-jungle",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
