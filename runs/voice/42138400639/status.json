@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42138400639",
+ "run_number": "67",
+ "job_status": "success",
+ "sha": "747185dee6c1448f535948c975edfc39925a1dbb",
+ "script": "projects/night-005-white/voice-input-hinglish.txt",
+ "project": "night-005-white",
+ "timed_words": 261,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 120.65,
+ "audio_artifact": "voice-night-005-white",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
