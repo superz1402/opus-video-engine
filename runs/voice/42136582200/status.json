@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42136582200",
+ "run_number": "61",
+ "job_status": "cancelled",
+ "sha": "3cfc50d17363d22c79da70c10345f458ede13e05",
+ "script": "",
+ "project": "",
+ "timed_words": null,
+ "blocks": null,
+ "speech_seconds_blocks_only": null,
+ "audio_artifact": "voice-",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
