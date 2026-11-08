@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42532941281",
+ "run_number": "77",
+ "job_status": "success",
+ "sha": "852c777d8fd4e95c5236f0973f29b74795a422ef",
+ "script": "projects/night-010-mothman/voice-input-hinglish.txt",
+ "project": "night-010-mothman",
+ "timed_words": 287,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 124.59,
+ "audio_artifact": "voice-night-010-mothman",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
