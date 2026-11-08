@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42533288980",
+ "run_number": "83",
+ "job_status": "failure",
+ "sha": "48d76a56be27ea0e79f3bddc9bebe099b325ccac",
+ "script": "projects/night-012-pontianak/voice-input-hinglish.txt",
+ "project": "night-012-pontianak",
+ "timed_words": null,
+ "blocks": null,
+ "speech_seconds_blocks_only": null,
+ "audio_artifact": "voice-night-012-pontianak",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
