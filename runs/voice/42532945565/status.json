@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42532945565",
+ "run_number": "78",
+ "job_status": "failure",
+ "sha": "225ac6ad8f9e4ba94dbfbe28571a6f152fe1b384",
+ "script": "projects/night-011-aswang/voice-input-hinglish.txt",
+ "project": "night-011-aswang",
+ "timed_words": null,
+ "blocks": null,
+ "speech_seconds_blocks_only": null,
+ "audio_artifact": "voice-night-011-aswang",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
