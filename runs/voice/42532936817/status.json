@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42532936817",
+ "run_number": "76",
+ "job_status": "success",
+ "sha": "a4f384cacc821d2c7f77467a6e11e7b7cc0846bd",
+ "script": "projects/night-009-jiangshi/voice-input-hinglish.txt",
+ "project": "night-009-jiangshi",
+ "timed_words": 315,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 127.98,
+ "audio_artifact": "voice-night-009-jiangshi",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
