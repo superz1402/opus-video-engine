@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42533661541",
+ "run_number": "85",
+ "job_status": "success",
+ "sha": "e8ed7b45d96f38ddd67b8e4108a746d30023b126",
+ "script": "projects/night-007-churel/voice-input-hinglish.txt",
+ "project": "night-007-churel",
+ "timed_words": 326,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 130.6,
+ "audio_artifact": "voice-night-007-churel",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
