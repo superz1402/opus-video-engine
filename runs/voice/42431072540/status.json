@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42431072540",
+ "run_number": "73",
+ "job_status": "failure",
+ "sha": "55052d0301327f09b20905ff3ca04cd245e7caa5",
+ "script": "projects/night-006-question/voice-input-hinglish.txt",
+ "project": "night-006-question",
+ "timed_words": null,
+ "blocks": 3,
+ "speech_seconds_blocks_only": 4.0,
+ "audio_artifact": "voice-night-006-question",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
