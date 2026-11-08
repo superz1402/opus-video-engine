@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42532954315",
+ "run_number": "80",
+ "job_status": "success",
+ "sha": "3e64516f225158cc5d5da71ed50dd85c96e2bf77",
+ "script": "projects/night-013-onryo/voice-input-hinglish.txt",
+ "project": "night-013-onryo",
+ "timed_words": 310,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 129.25,
+ "audio_artifact": "voice-night-013-onryo",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
