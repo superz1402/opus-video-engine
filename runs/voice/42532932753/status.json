@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42532932753",
+ "run_number": "75",
+ "job_status": "failure",
+ "sha": "65da9e365c0992c3b4a6dd587e5c03772256b6cc",
+ "script": "projects/night-008-banshee/voice-input-hinglish.txt",
+ "project": "night-008-banshee",
+ "timed_words": null,
+ "blocks": null,
+ "speech_seconds_blocks_only": null,
+ "audio_artifact": "voice-night-008-banshee",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
