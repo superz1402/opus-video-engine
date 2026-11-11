@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "43001954671",
+ "run_number": "98",
+ "job_status": "success",
+ "sha": "0a5f3c65454fdd199873ba434163b315bd723b19",
+ "script": "projects/nvidia-crayon-demo/voice-input.txt",
+ "project": "nvidia-crayon-demo",
+ "timed_words": 245,
+ "blocks": 6,
+ "speech_seconds_blocks_only": 93.59,
+ "audio_artifact": "voice-nvidia-crayon-demo",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
