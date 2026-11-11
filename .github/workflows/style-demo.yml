@@ -5,6 +5,8 @@ name: style-demo
 # Voice is pre-fetched and committed in each project (voice/), so no
 # synthesis happens here; the render uses the in-repo lib/ subset
 # (lemo-opuscar core/render + core/audio).
+# Publishing follows the opus-render pattern: the finished film goes to
+# a prerelease shelf (tag demo-<name>-v1) AND to the run artifact.
 
 on:
   workflow_dispatch:
@@ -18,7 +20,8 @@ on:
           - rubber-hose
 
 permissions:
-  contents: read
+  contents: write # create/update the demo Release
+  actions: read
 
 jobs:
   render:
@@ -67,6 +70,28 @@ jobs:
           ffmpeg -y -v error -ss 4 -i "$D/demo-2min.mp4" -frames:v 1 "$D/poster.jpg"
           ffmpeg -y -v error -i "$D/demo-2min.mp4" -vf "fps=1/15,scale=640:-1,tile=4x2:margin=4:padding=4" -frames:v 1 "$D/contact-sheet.jpg"
 
+      - name: Build report (CI-measured)
+        if: success()
+        env:
+          DEMO: ${{ inputs.demo }}
+        run: |
+          D="style-demos/$DEMO"
+          DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$D/demo-2min.mp4")
+          PROBE=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height,r_frame_rate,codec_name -of default=noprint_wrappers=1 "$D/demo-2min.mp4" | tr '\n' ' ')
+          LOUD=$(ffmpeg -nostdin -i "$D/demo-2min.mp4" -map 0:a -af loudnorm=print_format=json -f null - 2>&1 | grep '"input_i"' | head -1 || true)
+          {
+            echo "# BUILD REPORT — $DEMO (CI)"
+            echo
+            echo "- Rendered on: GitHub Actions, workflow style-demo, run ${{ github.run_id }} (${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+            echo "- Film: \"WOH LADY JO NVIDIA KE ANDAR THI\" — 2-minute style-test demo, opening segment"
+            echo "- Voice: hi-IN-SwaraNeural @ +12% (pre-fetched opus-voice artifact, committed in project/voice/)"
+            echo "- Duration: ${DUR}s"
+            echo "- Video: $PROBE"
+            echo "- Loudness (input_i): $LOUD"
+            echo "- Release: tag demo-$DEMO-v1 (prerelease shelf)"
+          } > "$D/BUILD-REPORT.md"
+          cat "$D/BUILD-REPORT.md"
+
       - name: Upload demo artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -78,4 +103,29 @@ jobs:
             style-demos/${{ inputs.demo }}/poster.jpg
             style-demos/${{ inputs.demo }}/contact-sheet.jpg
             style-demos/${{ inputs.demo }}/demo-2min.srt
+            style-demos/${{ inputs.demo }}/BUILD-REPORT.md
             build.log
+
+      - name: Publish GitHub Release
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEMO: ${{ inputs.demo }}
+        shell: bash
+        run: |
+          D="style-demos/$DEMO"
+          TAG="demo-$DEMO-v1"
+          DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$D/demo-2min.mp4")
+          NOTES="Style-test demo for the documentary \"WOH LADY JO NVIDIA KE ANDAR THI\", rendered in the $DEMO style from lemomo-ai/lemo-opuscar on GitHub Actions (style-demo run ${{ github.run_id }}). Specs: ${DUR}s, 1920x1080 @ 24 fps, -14 LUFS mix; narration hi-IN-SwaraNeural @ +12% (Hinglish, pre-fetched voice). Assets: demo-2min.mp4 (master), poster.jpg, contact-sheet.jpg, demo-2min.srt, BUILD-REPORT.md."
+          ASSETS="$D/demo-2min.mp4 $D/poster.jpg $D/contact-sheet.jpg $D/demo-2min.srt $D/BUILD-REPORT.md"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" $ASSETS --clobber
+            gh release edit "$TAG" --notes "$NOTES"
+          else
+            gh release create "$TAG" --prerelease \
+              --title "Style demo: $DEMO ($TAG)" \
+              --notes "$NOTES" \
+              $ASSETS
+          fi
+          gh release view "$TAG" --json url,tagName,assets \
+            --jq '{url, tag: .tagName, assets: [.assets[].name]}'
