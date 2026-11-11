@@ -1,0 +1,25 @@
+WOH LADY JO NVIDIA KE ANDAR THI — 2-minute style demo (1930s Rubber Hose Cartoon)
+Picture, score and sound effects: all original, drawn and synthesised in code for
+this film. No existing cartoon character, design, melody, logo or photograph is used;
+the people in the story are generic 1930s figures, not likenesses.
+
+Engine
+- Lemo-Opuscar library (lemomo-ai/lemo-opuscar): core render/mux tools and the
+  rubber-hose demo's technique files (toon.js constant-width ink + line boil,
+  film.js gate/film-damage composite, chars.js anatomy kit, ui.js title lettering
+  and title-card plates) — copied into this project and credited here.
+
+Voice
+- Microsoft Edge TTS (edge-tts), voice hi-IN-SwaraNeural @ +12%, run on GitHub
+  Actions (superz1402/opus-video-engine, workflow opus-voice, run 43001880339);
+  WordBoundary timings captured from the same run.
+
+Music & sound effects
+- Original score composed for this film and synthesised in numpy (music.py):
+  stride piano, clarinet, trumpet, trombone, tuba, Karplus-Strong banjo,
+  xylophone, woodblocks, brushes — no sample libraries, no third-party recordings.
+- All foley synthesised in code (mix.py, with core/audio/sfx.py helpers).
+
+Fonts (SIL Open Font License 1.1; licence files in fonts/)
+- Shrikhand (Jonny Pinhorn), Limelight (Nicole Fally / Sorkin Type),
+  IM Fell English SC (Igino Marini) — via google/fonts, commit 86aced91.

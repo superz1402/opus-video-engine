@@ -1,0 +1,33 @@
+CREDITS — "WOH LADY JO NVIDIA KE ANDAR THI" · 2-minute Urban Sketch style demo
+
+Everything in this film was drawn and synthesised in code for this project.
+No stock footage, no photographs, no real faces, no logos.
+
+Voice
+- Microsoft Edge TTS, voice hi-IN-SwaraNeural, rate +12%, generated via the
+  project's GitHub Actions pipeline (superz1402/opus-video-engine, workflow
+  opus-voice, run 43001949810). Word timings from the same run's WordBoundary
+  output drive the captions and cut points.
+
+Music & sound
+- Score: original jazz waltz in D minor, composed for this film and rendered
+  procedurally (walking bass, brushes, piano, flute and clarinet leads
+  synthesised with numpy/scipy in mix.py). No samples, no third-party music.
+- Foley: all procedural (pen on paper, brush washes, rain, page turn, cards,
+  drip), synthesised in mix.py from the timeline's event list.
+
+Fonts (both SIL Open Font License 1.1; licence texts in project/fonts/)
+- Caveat — designed by Pablo Impallari; from the Google Fonts repository.
+- Reenie Beanie — designed by James Grieshaber; from the Google Fonts
+  repository.
+
+Style & tools
+- Film style: "Urban Sketch · Pen & Wash" from the lemo-opuscar style library
+  (used under its licence; the library's demo film, story and sign-off are not
+  used). Rendering/mux pipeline: the library's core tools (headless Chrome
+  frame capture, ffmpeg two-pass loudnorm mux).
+
+Facts
+- The narration is the opening of the project's own documentary script,
+  written from the project's graded source notes (see ../../00-SOURCE-NOTES.md).
+  All people are fictional ink sketches with blank faces, per the style's rule.

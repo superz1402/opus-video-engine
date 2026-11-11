@@ -1,0 +1,81 @@
+name: style-demo
+
+# Renders one of the Nvidia-doc style demos (urban-sketch / rubber-hose)
+# from the self-contained projects under style-demos/<name>/project.
+# Voice is pre-fetched and committed in each project (voice/), so no
+# synthesis happens here; the render uses the in-repo lib/ subset
+# (lemo-opuscar core/render + core/audio).
+
+on:
+  workflow_dispatch:
+    inputs:
+      demo:
+        description: "Style demo to render"
+        required: true
+        type: choice
+        options:
+          - urban-sketch
+          - rubber-hose
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ffmpeg + Python deps
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python3 -m pip install --quiet numpy scipy soundfile
+
+      - name: Install lib deps + Chromium
+        working-directory: lib
+        run: |
+          npm ci --no-audit --no-fund
+          node node_modules/playwright-core/cli.js install --with-deps chromium
+
+      - name: Render demo
+        env:
+          LIB: ${{ github.workspace }}/lib
+          PY: python3
+        run: |
+          set -o pipefail
+          CHROME=$(find "$HOME/.cache/ms-playwright" -type f -name chrome | head -n 1)
+          echo "PLAYWRIGHT_CHROME=$CHROME"
+          export PLAYWRIGHT_CHROME="$CHROME"
+          sh "style-demos/${{ inputs.demo }}/project/build.sh" 2>&1 | tee build.log
+
+      - name: Poster + contact sheet
+        if: success()
+        run: |
+          D="style-demos/${{ inputs.demo }}"
+          ffmpeg -y -v error -ss 4 -i "$D/demo-2min.mp4" -frames:v 1 "$D/poster.jpg"
+          ffmpeg -y -v error -i "$D/demo-2min.mp4" -vf "fps=1/15,scale=640:-1,tile=4x2:margin=4:padding=4" -frames:v 1 "$D/contact-sheet.jpg"
+
+      - name: Upload demo artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-${{ inputs.demo }}
+          if-no-files-found: warn
+          path: |
+            style-demos/${{ inputs.demo }}/demo-2min.mp4
+            style-demos/${{ inputs.demo }}/poster.jpg
+            style-demos/${{ inputs.demo }}/contact-sheet.jpg
+            style-demos/${{ inputs.demo }}/demo-2min.srt
+            build.log

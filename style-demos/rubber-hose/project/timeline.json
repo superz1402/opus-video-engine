@@ -1,0 +1,557 @@
+{
+ "dur": 116.0,
+ "vo": [
+  {
+   "id": "L1",
+   "start": 4.0,
+   "srcStart": 0.0,
+   "dur": 14.498
+  },
+  {
+   "id": "L2",
+   "start": 19.0,
+   "srcStart": 14.848,
+   "dur": 21.704
+  },
+  {
+   "id": "L3",
+   "start": 43.0,
+   "srcStart": 36.902,
+   "dur": 6.776
+  },
+  {
+   "id": "L4",
+   "start": 52.0,
+   "srcStart": 44.028,
+   "dur": 20.56
+  },
+  {
+   "id": "L5",
+   "start": 73.0,
+   "srcStart": 64.938,
+   "dur": 14.816
+  },
+  {
+   "id": "L6",
+   "start": 88.5,
+   "srcStart": 80.104,
+   "dur": 15.234
+  }
+ ],
+ "k": {
+  "glass": 11.996,
+  "table": 13.559,
+  "gulabi": 21.338,
+  "kandhe": 23.905,
+  "kiss": 28.336,
+  "dinnerEnd": 29.921,
+  "client": 33.358,
+  "gaadi": 39.329,
+  "stamp": 57.769,
+  "intel": 59.807,
+  "agent": 64.182,
+  "ruko": 73.0,
+  "deal": 81.008,
+  "ghadi": 82.09,
+  "doors": 98.031,
+  "neev": 103.762
+ },
+ "freeze": [
+  50.0,
+  52.0
+ ],
+ "shots": [
+  [
+   0.0,
+   4.0,
+   "title"
+  ],
+  [
+   4.0,
+   19.0,
+   "lane"
+  ],
+  [
+   19.0,
+   29.92,
+   "dinner"
+  ],
+  [
+   29.92,
+   43.0,
+   "doorway"
+  ],
+  [
+   43.0,
+   50.0,
+   "news"
+  ],
+  [
+   50.0,
+   73.0,
+   "freeze"
+  ],
+  [
+   73.0,
+   88.5,
+   "desk"
+  ],
+  [
+   88.5,
+   116.0,
+   "doors"
+  ]
+ ],
+ "subs": [
+  {
+   "t0": 4.02,
+   "t1": 7.49,
+   "text": "Is photo ko dhyaan se dekho Baarish ho rahi"
+  },
+  {
+   "t0": 7.53,
+   "t1": 11.31,
+   "text": "hai Taipei ki ek gali mein ek chhota sa restaurant"
+  },
+  {
+   "t0": 11.35,
+   "t1": 14.72,
+   "text": "hai aur sheeshe ke peeche ek table par duniya"
+  },
+  {
+   "t0": 14.76,
+   "t1": 18.98,
+   "text": "ki sabse keemti company ka sabse keemti aadmi baitha hai"
+  },
+  {
+   "t0": 19.02,
+   "t1": 23.08,
+   "text": "Uske saath ek lady hai Gulabi dress mein"
+  },
+  {
+   "t0": 23.17,
+   "t1": 26.55,
+   "text": "Woh uske kandhe par haath rakhti hai uske kaan mein kuch kehti"
+  },
+  {
+   "t0": 26.59,
+   "t1": 30.28,
+   "text": "hai aur uske gaal par ek kiss karti hai Dinner"
+  },
+  {
+   "t0": 30.32,
+   "t1": 33.64,
+   "text": "khatam hota hai toh woh aadmi darwaze par ruk kar ek client"
+  },
+  {
+   "t0": 33.68,
+   "t1": 37.8,
+   "text": "ko alvida kehta hai aur woh lady intezaar nahi karti"
+  },
+  {
+   "t0": 37.89,
+   "t1": 41.32,
+   "text": "Woh seedha jaakar uski gaadi mein baith jaati hai"
+  },
+  {
+   "t0": 43.02,
+   "t1": 46.62,
+   "text": "Us raat Taiwan ki khabar sirf itni thi Jensen Huang"
+  },
+  {
+   "t0": 46.66,
+   "t1": 50.44,
+   "text": "ne baarish mein khade reporters ko fried rice baanta tha"
+  },
+  {
+   "t0": 52.02,
+   "t1": 55.43,
+   "text": "Dedh saal baad wahi photo duniya ki sabse badi"
+  },
+  {
+   "t0": 55.47,
+   "t1": 58.95,
+   "text": "jaanch ka pehla saboot ban jaayegi Kyunki"
+  },
+  {
+   "t0": 58.99,
+   "t1": 62.38,
+   "text": "America ki intelligence ka kehna hai yeh lady koi"
+  },
+  {
+   "t0": 62.42,
+   "t1": 65.76,
+   "text": "aam businesswoman nahi thi Yeh China ki"
+  },
+  {
+   "t0": 65.8,
+   "t1": 69.61,
+   "text": "jasusi agency ki bheji hui ek agent thi Aur"
+  },
+  {
+   "t0": 69.65,
+   "t1": 72.98,
+   "text": "uska kaam tha Jensen Huang ke kareeb jaana"
+  },
+  {
+   "t0": 73.02,
+   "t1": 77.49,
+   "text": "Lekin ruko Yeh film faisla nahi sunayegi"
+  },
+  {
+   "t0": 77.6,
+   "t1": 80.89,
+   "text": "Yeh film saboot ko ek table par rakhegi ek-ek"
+  },
+  {
+   "t0": 80.93,
+   "t1": 84.63,
+   "text": "karke ek hi ghadi par aur tum khud dekhoge kya"
+  },
+  {
+   "t0": 84.67,
+   "t1": 88.4,
+   "text": "sach mein record par hai aur kya sirf kaha gaya hai"
+  },
+  {
+   "t0": 88.52,
+   "t1": 92.06,
+   "text": "Is hisse ka connection is kahani se isliye hai kyunki aage"
+  },
+  {
+   "t0": 92.1,
+   "t1": 95.84,
+   "text": "jo kuch bhi tum dekhoge har photo har kagaz"
+  },
+  {
+   "t0": 95.88,
+   "t1": 100.35,
+   "text": "har aarop uska wazan inhi chaar khano se tay hoga"
+  },
+  {
+   "t0": 100.43,
+   "t1": 104.36,
+   "text": "Yeh do minute aage ke athais minute ki neev hain"
+  }
+ ],
+ "ev": [
+  {
+   "t": 11.996,
+   "type": "glassTap"
+  },
+  {
+   "t": 22.405,
+   "type": "tick"
+  },
+  {
+   "t": 22.905,
+   "type": "tick"
+  },
+  {
+   "t": 23.405,
+   "type": "tick"
+  },
+  {
+   "t": 23.905,
+   "type": "tick"
+  },
+  {
+   "t": 24.405,
+   "type": "tick"
+  },
+  {
+   "t": 28.586,
+   "type": "kissPop"
+  },
+  {
+   "t": 29.821,
+   "type": "chair"
+  },
+  {
+   "t": 30.421,
+   "type": "shutter"
+  },
+  {
+   "t": 31.421,
+   "type": "shutter"
+  },
+  {
+   "t": 32.421,
+   "type": "shutter"
+  },
+  {
+   "t": 33.358,
+   "type": "packet",
+   "i": 0
+  },
+  {
+   "t": 33.421,
+   "type": "shutter"
+  },
+  {
+   "t": 33.858,
+   "type": "packet",
+   "i": 1
+  },
+  {
+   "t": 34.358,
+   "type": "packet",
+   "i": 2
+  },
+  {
+   "t": 34.421,
+   "type": "shutter"
+  },
+  {
+   "t": 34.858,
+   "type": "packet",
+   "i": 3
+  },
+  {
+   "t": 35.358,
+   "type": "packet",
+   "i": 4
+  },
+  {
+   "t": 35.421,
+   "type": "shutter"
+  },
+  {
+   "t": 35.858,
+   "type": "packet",
+   "i": 5
+  },
+  {
+   "t": 36.421,
+   "type": "shutter"
+  },
+  {
+   "t": 37.421,
+   "type": "shutter"
+  },
+  {
+   "t": 38.129,
+   "type": "honk"
+  },
+  {
+   "t": 38.421,
+   "type": "shutter"
+  },
+  {
+   "t": 38.629,
+   "type": "honk"
+  },
+  {
+   "t": 39.421,
+   "type": "shutter"
+  },
+  {
+   "t": 39.629,
+   "type": "hopIn"
+  },
+  {
+   "t": 40.421,
+   "type": "shutter"
+  },
+  {
+   "t": 41.421,
+   "type": "shutter"
+  },
+  {
+   "t": 42.421,
+   "type": "shutter"
+  },
+  {
+   "t": 43.0,
+   "type": "shadeRoll",
+   "d": 0.9
+  },
+  {
+   "t": 49.3,
+   "type": "shadeRoll",
+   "d": 0.7
+  },
+  {
+   "t": 50.0,
+   "type": "freezeMark"
+  },
+  {
+   "t": 52.0,
+   "type": "clockSpin",
+   "d": 5.768999999999998
+  },
+  {
+   "t": 57.769,
+   "type": "stamp"
+  },
+  {
+   "t": 58.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 59.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 59.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 59.807,
+   "type": "magnifier",
+   "d": 2.2
+  },
+  {
+   "t": 60.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 60.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 61.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 61.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 62.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 62.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 63.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 63.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 64.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 64.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 65.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 65.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 66.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 66.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 67.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 67.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 68.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 68.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 69.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 69.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 70.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 70.769,
+   "type": "stepSoft"
+  },
+  {
+   "t": 71.269,
+   "type": "stepSoft"
+  },
+  {
+   "t": 81.008,
+   "type": "cardDeal",
+   "i": 0
+  },
+  {
+   "t": 81.508,
+   "type": "cardDeal",
+   "i": 1
+  },
+  {
+   "t": 82.008,
+   "type": "cardDeal",
+   "i": 2
+  },
+  {
+   "t": 82.09,
+   "type": "clockCard"
+  },
+  {
+   "t": 82.508,
+   "type": "cardDeal",
+   "i": 3
+  },
+  {
+   "t": 83.008,
+   "type": "cardDeal",
+   "i": 4
+  },
+  {
+   "t": 83.508,
+   "type": "cardDeal",
+   "i": 5
+  },
+  {
+   "t": 99.031,
+   "type": "doorCreak",
+   "i": 0
+  },
+  {
+   "t": 100.531,
+   "type": "doorCreak",
+   "i": 1
+  },
+  {
+   "t": 102.031,
+   "type": "doorCreak",
+   "i": 2
+  },
+  {
+   "t": 103.531,
+   "type": "doorCreak",
+   "i": 3
+  },
+  {
+   "t": 112.5,
+   "type": "irisGrab"
+  }
+ ],
+ "bpm": 120,
+ "beat": 0.5
+}
