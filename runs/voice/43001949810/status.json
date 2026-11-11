@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "43001949810",
+ "run_number": "97",
+ "job_status": "success",
+ "sha": "9c7d71d78238248ada64ebd8d7233d126cbe5959",
+ "script": "projects/nvidia-urban-sketch/voice-input.txt",
+ "project": "nvidia-urban-sketch",
+ "timed_words": 245,
+ "blocks": 6,
+ "speech_seconds_blocks_only": 93.59,
+ "audio_artifact": "voice-nvidia-urban-sketch",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
