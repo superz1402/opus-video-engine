@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "42993531293",
+ "run_number": "93",
+ "job_status": "success",
+ "sha": "2c8048f0e29a6213503a4cedc059f983e62e6be9",
+ "script": "projects/nvidia-proof-60s/voice-input.txt",
+ "project": "nvidia-proof-60s",
+ "timed_words": 138,
+ "blocks": 5,
+ "speech_seconds_blocks_only": 59.08,
+ "audio_artifact": "voice-nvidia-proof-60s",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
