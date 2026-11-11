@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "43001880339",
+ "run_number": "96",
+ "job_status": "success",
+ "sha": "3a822863355c1ae7b286280622bd733abb5ff2db",
+ "script": "projects/nvidia-rubber-hose/voice-input.txt",
+ "project": "nvidia-rubber-hose",
+ "timed_words": 245,
+ "blocks": 6,
+ "speech_seconds_blocks_only": 93.59,
+ "audio_artifact": "voice-nvidia-rubber-hose",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
