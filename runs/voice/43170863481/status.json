@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "43170863481",
+ "run_number": "100",
+ "job_status": "success",
+ "sha": "019aea05db78c4f4e3810f4b60a145e12b7c0aef",
+ "script": "projects/nvidia-audition-swara/voice-input.txt",
+ "project": "nvidia-audition-swara",
+ "timed_words": 87,
+ "blocks": 2,
+ "speech_seconds_blocks_only": 37.54,
+ "audio_artifact": "voice-nvidia-audition-swara",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
