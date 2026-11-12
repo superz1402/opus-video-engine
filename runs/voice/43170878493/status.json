@@ -1,0 +1,14 @@
+{
+ "workflow": "opus-voice",
+ "run_id": "43170878493",
+ "run_number": "101",
+ "job_status": "success",
+ "sha": "457cdae8480d45fffa88692cd6d6607420e1e317",
+ "script": "projects/nvidia-audition-madhur/voice-input.txt",
+ "project": "nvidia-audition-madhur",
+ "timed_words": 87,
+ "blocks": 2,
+ "speech_seconds_blocks_only": 36.31,
+ "audio_artifact": "voice-nvidia-audition-madhur",
+ "note": "audio.wav lives in the run artifact, not git; words/timing are the caption contract"
+}
